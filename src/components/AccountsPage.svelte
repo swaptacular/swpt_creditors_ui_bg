@@ -175,7 +175,7 @@
   }
 </style>
 
-<Page title="Accounts" scrollTop={model.scrollTop} scrollLeft={model.scrollLeft}>
+<Page title="Сметки" scrollTop={model.scrollTop} scrollLeft={model.scrollLeft}>
   <svelte:fragment slot="content">
     {#if hasAccounts}
       {#if shownAccounts.length > 0 }
@@ -186,12 +186,11 @@
                 <PrimaryAction padded on:click={deleteUnnamedAccountUris}>
                   <span class="delete-link">
                     {#if unnamedAccountUris.length === 1}
-                      Delete 1 unconfirmed account, which is not
-                      properly configured.
+                      Изтрий 1 непотвърдена сметка, която не е
+                      правилно конфигурирана.
                     {:else}
-                      Delete {unnamedAccountUris.length}
-                      unconfirmed accounts, which are not properly
-                      configured.
+                      Изтрий {unnamedAccountUris.length} непотвърдени
+                      сметки, които не са правилно конфигурирани.
                     {/if}
                   </span>
                 </PrimaryAction>
@@ -222,30 +221,30 @@
         </LayoutGrid>
       {:else}
         <p class="no-matches">
-          There are no accounts matching the specified filter.
+          Няма сметки, които отговарят на зададения филтър.
         </p>
       {/if}
 
     {:else}
       <Paper elevation={8} style="margin: 24px 18px">
         <Title>
-          Your wallet is empty!
+          Портфейлът ви е празен!
         </Title>
         <Content>
           <p class="text">
-            To acquire any digital currency, you first need to create
-            an account with it. To do so, scan the QR code that
-            identifies the currency you want to use.
+            За да използвате която и да е дигитална валута, първо
+            трябва да си откриете сметка към нея. За да направите
+            това, сканирайте QR кода, който определя валутата, която
+            искате да използвате.
           </p>
           <p class="text">
-            In {appConfig.siteTitle}, the QR code that
-            identifies a given currency is called "the digital coin" for
-            the currency.
+            QR кодът, който уникално определя дадена валута, се нарича
+            „дигитална монета“ на съответната валута.
           </p>
           <p class="text important">
-            Press the
+            Натиснете бутона
             <Icon class="material-icons" style="vertical-align: middle">add</Icon>
-            button below to add a new account.
+            по-долу, за да откриете нова сметка.
           </p>
         </Content>
       </Paper>
@@ -262,7 +261,7 @@
             variant="outlined"
             type="text"
             style="width: 100%"
-            label="Filter by name"
+            label="Филтриране по име"
             input$spellcheck="false"
             bind:this={searchInput}
             bind:value={searchText}
@@ -272,9 +271,9 @@
               <HelperText slot="helper" persistent>
                 {shownAccounts.length}
                 {#if shownAccounts.length == 1}
-                  account
+                  сметка
                 {:else}
-                  accounts
+                  сметки
                 {/if}
               </HelperText>
           </Textfield>

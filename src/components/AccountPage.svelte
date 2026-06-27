@@ -130,7 +130,7 @@
       app.addAlert(new Alert(
         'Получаването на плащания по тази сметка не е разрешено. '
           + 'Това може да е само временно състояние, ако '
-          + 'сметката е създадена съвсем наскоро или все още не сте потвърдили '
+          + 'сметката е открита съвсем наскоро или все още не сте потвърдили '
           + 'последните промени по сметката.',
         { continue: showActions },
       ))
@@ -280,7 +280,7 @@
           aria-labelledby="ack-payment-help-dialog-title"
           aria-describedby="ack-payment-help-dialog-content"
           >
-          <DialogTitle>Успешно създадохте сметка към "{debtorName}".</DialogTitle>
+          <DialogTitle>Успешно открихте сметка към "{debtorName}".</DialogTitle>
           <DialogContent style="word-break: break-word">
             <p>
               Моля, погледнете реда от бутони в долната част на
@@ -298,7 +298,7 @@
               <Fab style="vertical-align: middle">
                 <ExchangeSvgIcon />
               </Fab>
-              за да конфигурирате автоматичната обмяна на валути.
+              за да настоите автоматичната обмяна на валути.
             </p>
           </DialogContent>
           <Actions>
@@ -339,7 +339,7 @@
               </li>
               {#if scheduledForDeletion}
                 <li>
-                  Тази сметка ще бъде изтрита.
+                  Тази сметка ще бъде закрита.
                 </li>
               {:else if exchange.policy !== undefined}
                 <li>
