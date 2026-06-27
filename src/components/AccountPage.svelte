@@ -128,10 +128,10 @@
       data.info.noteMaxBytes >= 150n
     )) {
       app.addAlert(new Alert(
-        'Requesting payments is not allowed '
-          + 'for this account. This may be just a temporary condition, if the '
-          + 'account has been created only recently, or you have not acknowledged '
-          + 'the latest changes in the account.',
+        'Получаването на плащания по тази сметка не е разрешено. '
+          + 'Това може да е само временно състояние, ако '
+          + 'сметката е създадена съвсем наскоро или все още не сте потвърдили '
+          + 'последните промени по сметката.',
         { continue: showActions },
       ))
     } else {
@@ -280,30 +280,30 @@
           aria-labelledby="ack-payment-help-dialog-title"
           aria-describedby="ack-payment-help-dialog-content"
           >
-          <DialogTitle>You have successfully created an account with "{debtorName}".</DialogTitle>
+          <DialogTitle>Успешно създадохте сметка към "{debtorName}".</DialogTitle>
           <DialogContent style="word-break: break-word">
             <p>
-              Please look at the row of buttons at the bottom of the
-              screen.
+              Моля, погледнете реда от бутони в долната част на
+              екрана.
             </p>
             <p class="button-help">
-              Use
+              Използвайте
               <Fab color="primary" style="vertical-align: middle">
                 <Icon class="material-icons">receipt</Icon>
               </Fab>
-              to request a payment.
+              за да направите покана за плащане.
             </p>
             <p class="button-help">
-              Use
+              Използвайте
               <Fab style="vertical-align: middle">
                 <ExchangeSvgIcon />
               </Fab>
-              to configure automatic currency exchanges.
+              за да конфигурирате автоматичната обмяна на валути.
             </p>
           </DialogContent>
           <Actions>
             <Button use={[InitialFocus]} on:click={gotIt}>
-              <ButtonLabel>Got it</ButtonLabel>
+              <ButtonLabel>Разбрах</ButtonLabel>
             </Button>
           </Actions>
         </Dialog>
@@ -321,16 +321,16 @@
           >
           <svelte:fragment slot="title">
             {#if knownDebtor}
-              Account with "{debtorName}"
+              Сметка към "{debtorName}"
             {:else}
-              Unconfirmed account with "{debtorName}"
+              Непотвърдена сметка към "{debtorName}"
             {/if}
           </svelte:fragment>
 
           <svelte:fragment slot="important">
             <ul>
               <li>
-                The annual interest rate on this account is
+                Годишният лихвен процент по тази сметка е
                 {#if interestRate === 0}
                   0%.
                 {:else}
@@ -339,33 +339,33 @@
               </li>
               {#if scheduledForDeletion}
                 <li>
-                  This account has been scheduled for deletion.
+                  Тази сметка ще бъде изтрита.
                 </li>
               {:else if exchange.policy !== undefined}
                 <li>
-                  The available amount should stay
+                  Искам наличната сума да бъде
                   {#if minPrincipalUnitAmount === maxPrincipalUnitAmount}
-                    as close as possible to {maxPrincipalUnitAmount} {unitAbbr}.
+                    възможно най-близо до {maxPrincipalUnitAmount} {unitAbbr}.
                   {:else}
-                    between {minPrincipalUnitAmount} and {maxPrincipalUnitAmount} {unitAbbr}.
+                    между {minPrincipalUnitAmount} и {maxPrincipalUnitAmount} {unitAbbr}.
                   {/if}
                 </li>
               {/if}
               {#if configError !== undefined}
                 <li>
                   {#if configError === 'NO_CONNECTION_TO_DEBTOR'}
-                    No connection can be made to the servers that
-                    manage this currency. You will not be able to send
-                    or receive money from this account, but you still
-                    can peg other currencies to it.
+                    Не може да се осъществи връзка със сървърите,
+                    които управляват тази валута. Няма да можете да
+                    изпращате или получавате пари от тази сметка, но
+                    ще можете да фиксирате други валути към нея.
                   {:else if configError === 'CONFIGURATION_IS_NOT_EFFECTUAL'}
-                    This account has some configuration
-                    problem. Usually this means that temporarily, a
-                    connection can not be made to the servers that
-                    manage this currency.
+                    Тази сметка има проблем с конфигурацията.
+                    Обикновено това означава, че временно не може да
+                    се осъществи връзка със сървърите, които
+                    управляват тази валута.
                   {:else}
-                    An unexpected account configuration problem has
-                    occurred:
+                    Възникна неочакван проблем с конфигурацията на
+                    сметката:
                     <span style="word-break: break-all">{configError}</span>.
                   {/if}
                 </li>
@@ -381,21 +381,21 @@
           <QrGenerator value={digitalCoin} bind:dataUrl />
         </div>
         <a class="download-link" href={dataUrl} download={`${debtorName}.png`} bind:this={downloadLinkElement}>
-          download
+          изтегли
         </a>
         <div class="text-container">
           <Paper elevation={8} style="margin: 0 16px 24px 16px; max-width: 600px; word-break: break-word">
             <Title>
-              Digital coin for "{debtorName}"
+              Дигитална монета на "{debtorName}"
             </Title>
             <Content>
               <a href="{digitalCoin}" target="_blank" rel="noreferrer" on:click|preventDefault={() => downloadLinkElement?.click()}>
-                The image above
+                Изображението по-горе
               </a>
-              (a standard QR code) uniquely identifies the account's
-              digital currency. Other people may want to scan this QR
-              code with their mobile devices, so that they can use
-              this currency too.
+              (стандартен QR код) уникално определя дигиталната валута
+              на тази сметка. Други хора може да сканират този QR код
+              с мобилните си устройства, ако също искат да използват
+              тази валута.
             </Content>
           </Paper>
         </div>
@@ -404,11 +404,12 @@
     {:else if tab === 'sort'}
       <div in:fade="{{ duration }}">
         <Paper style="margin: 24px 18px; word-break: break-word" elevation={6}>
-          <Title>Sort rank for "{debtorName}"</Title>
+          <Title>Приоритет при подреждане на "{debtorName}"</Title>
           <Content>
-            To select this account easily among other accounts, you
-            may increase its sort rank. By doing so, you will push
-            this account closer to the top of the accounts list.
+            За да намирате по-лесно тази сметка сред останалите
+            сметки, можете да увеличите нейния приоритет при
+            подреждане. По този начин ще придвижите тази сметка
+            по-напред в списъка.
           </Content>
         </Paper>
         <div class="text-container">
@@ -425,7 +426,7 @@
       <div in:fade="{{ duration }}">
         {#if transfers.length === 0}
           <p class="no-transfers">
-            There are no known transfers to/from this account.
+            Няма известни преводи към/от тази сметка.
           </p>
         {/if}
         <LayoutGrid>
@@ -444,7 +445,7 @@
                 <CardContent>
                   <div class="load-button">
                     <span>
-                      Load older tranfers
+                      Зареди по-стари преводи
                     </span>
                     <Icon class="material-icons">
                       arrow_forward

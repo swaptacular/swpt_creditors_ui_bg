@@ -65,7 +65,7 @@
       <Wrapper>
         <Chip chip="help" on:click={() => undefined} style="float: right; margin-left: 6px">
           <Text>
-            <a href={homepage} target="_blank" rel="noreferrer" style="text-decoration: none; color: #666">info</a>
+            <a href={homepage} target="_blank" rel="noreferrer" style="text-decoration: none; color: #666">инфо</a>
           </Text>
         </Chip>
         <Tooltip>{homepage}</Tooltip>
@@ -102,7 +102,7 @@
       {#if summary}
         {summary}
       {:else}
-        <span style="color: #ccc">The issuer of the currency has not provided any currency description.</span>
+        <span style="color: #ccc">Издателят на валутата не е предоставил описание на валутата.</span>
       {/if}
     </blockquote>
     <slot name="content"></slot>
