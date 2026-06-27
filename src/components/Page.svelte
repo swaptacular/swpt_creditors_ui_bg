@@ -26,7 +26,7 @@
 
   function confirmLogout() {
     app.startInteraction()
-    if (confirm('You will be logged out. To use the application again, you will have to log in.')) {
+    if (confirm('Ще излезете от потребителския си профил. За да използвате приложението, ще трябва да влезете отново.')) {
       app.logout()
     }
   }
@@ -83,7 +83,7 @@
       </Section>
 
       <Section align="end" toolbar>
-        <IconButton class="material-icons" aria-label="Reload" on:click={update}>
+        <IconButton class="material-icons" aria-label="Презареди" on:click={update}>
           {#if $authenticated}
             sync
           {:else}
@@ -92,11 +92,11 @@
         </IconButton>
 
         {#if $pageModel.goBack}
-          <IconButton class="material-icons" aria-label="Logout" on:click={goHome}>
+          <IconButton class="material-icons" aria-label="Изход" on:click={goHome}>
             home
           </IconButton>
         {:else}
-          <IconButton class="material-icons" aria-label="Logout" on:click={confirmLogout}>
+          <IconButton class="material-icons" aria-label="Изход" on:click={confirmLogout}>
             logout
           </IconButton>
         {/if}
