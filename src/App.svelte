@@ -31,7 +31,7 @@
 
   function logError(e: unknown): string {
     console.error(e)
-    return 'Oops, an unexpected error has occurred which prevents the application from running.'
+    return 'Опа! Възникна неочаквана грешка и приложението не може да продължи работа.'
   }
 
   async function handleClosedAuthenticationErrorSnackbar(event: any) {
@@ -102,7 +102,7 @@
     {/if}
   {:catch error}
     <Paper style="margin: 36px 18px" elevation={8}>
-      <Title>Application error</Title>
+      <Title>Програмна грешка</Title>
       <Content>
         {logError(error)}
       </Content>
@@ -110,7 +110,7 @@
   {/await}
 
   <Snackbar bind:this={authenticationErrorSnackbar} on:MDCSnackbar:closed={handleClosedAuthenticationErrorSnackbar}>
-    <Label>You need to log in again to perform actions in your user account.</Label>
+    <Label>Трябва да влезете отново, за да извършвате действия в потребителския си профил.</Label>
     <Actions>
       <Button>Login</Button>
       <IconButton class="material-icons" title="Dismiss">close</IconButton>
@@ -118,14 +118,14 @@
   </Snackbar>
 
   <Snackbar bind:this={networkErrorSnackbar}>
-    <Label>A network error has occurred.</Label>
+    <Label>Възникна мрежова грешка.</Label>
     <Actions>
       <IconButton class="material-icons" title="Dismiss">close</IconButton>
     </Actions>
   </Snackbar>
 
   <Snackbar bind:this={httpErrorSnackbar}>
-    <Label>A server error has occurred.</Label>
+    <Label>Възникна грешка на сървъра.</Label>
     <Actions>
       <IconButton class="material-icons" title="Dismiss">close</IconButton>
     </Actions>

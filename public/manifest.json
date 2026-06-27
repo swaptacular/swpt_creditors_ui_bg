@@ -1,8 +1,8 @@
 {
-  "short_name": "Swaptacular Wallet",
-  "name": "Swaptacular Wallet Client",
-  "description": "Allows you to connect to a specialized server and make and request payments in digital currencies.",
-  "lang": "en",
+  "short_name": "Swaptacular портфейл",
+  "name": "Swaptacular портфейл",
+  "description": "Позволява ви да се свържете със специализиран сървър и да извършвате и заявявате плащания в цифрови валути.",
+  "lang": "bg",
   "dir": "ltr",
   "start_url": "./",
   "scope": "./",
@@ -28,28 +28,28 @@
       "sizes": "1280x640",
       "type": "image/png",
       "form_factor": "wide",
-      "label": "Viewing Your Wallet"
+      "label": "Преглед на моят портфейл"
     },
     {
       "src": "screenshots/wide2.png",
       "sizes": "1280x640",
       "type": "image/png",
       "form_factor": "wide",
-      "label": "Scanning a Payment Request"
+      "label": "Сканиране на покана за плащане"
     },
     {
       "src": "screenshots/narrow1.png",
       "sizes": "640x1280",
       "type": "image/png",
       "form_factor": "narrow",
-      "label": "Viewing Your Wallet"
+      "label": "Преглед на моят портфейл"
     },
     {
       "src": "screenshots/narrow2.png",
       "sizes": "640x1280",
       "type": "image/png",
       "form_factor": "narrow",
-      "label": "Scanning a Payment Request"
+      "label": "Сканиране на покана за плащане"
     }
   ],
   "file_handlers": [

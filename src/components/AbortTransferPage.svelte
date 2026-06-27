@@ -61,7 +61,7 @@
 
   $: action = model.action
   $: transfer = action.transfer
-  $: title = transfer.result ? "Failed payment" : "Delayed payment"
+  $: title = transfer.result ? "Неуспешно плащане" : "Забавено плащане"
   $: unitAmount = getUnitAmount(transfer.amount, model.accountData?.display)
   $: deadline = getDeadline(transfer)
   $: display = model.accountData?.display
@@ -102,16 +102,16 @@
         aria-describedby="failed-cancellation-content"
         on:MDCDialog:closed={closeDialog}
         >
-        <Title id="failed-cancellation-title">Failed payment cancellation</Title>
+        <Title id="failed-cancellation-title">Неуспешна отмяна на плащане</Title>
         <Content id="failed-cancellation-content">
-          The attempt to cancel the delayed payment has failed. You
-          can get rid of this payment, but please note that it is not
-          certain whether the amount has been successfully transferred
-          or not.
+          Опитът за отмяна на забавеното плащане беше неуспешен.
+          Можете да премахнете това плащане, но имайте предвид, че не
+          е сигурно дали прехвърлянето на сумата е било успешно или
+          не.
         </Content>
         <Actions>
           <Button on:click={dismiss}>
-            <ButtonLabel>Get rid of this payment</ButtonLabel>
+            <ButtonLabel>Премахни плащането</ButtonLabel>
           </Button>
           <Button default use={[InitialFocus]}>
             <ButtonLabel>OK</ButtonLabel>
@@ -125,18 +125,18 @@
     {#if transfer.result}
       <div class="fab-container">
         <Fab on:click={retry} extended>
-          <Label>Retry</Label>
+          <Label>Опитай отново</Label>
         </Fab>
       </div>
       <div class="fab-container">
         <Fab color="primary" on:click={dismiss} extended>
-          <Label>Dismiss</Label>
+          <Label>Отхвърли</Label>
         </Fab>
       </div>
     {:else}
       <div class="fab-container">
         <Fab color="primary" on:click={cancel} extended>
-          <Label>Cancel payment</Label>
+          <Label>Отменени плащането</Label>
         </Fab>
       </div>
     {/if}

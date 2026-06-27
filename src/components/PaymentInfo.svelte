@@ -34,12 +34,35 @@
     showAccount?.()    
   }
   
+  function translateStatus(s: string): string {
+    switch (s) {
+    case 'Successful':
+      return 'Успешно'
+    case 'Delayed':
+      return 'Забавено'
+    case 'Draft':
+      return 'Чернова'
+    case 'Not sent':
+      return 'Неизпратено'
+    case 'Not confirmed':
+      return 'Непотвърдено'
+    case 'Initiated':
+      return 'Започнато'
+    case 'Failed':
+      return 'Неуспешно'
+    case 'Timed out':
+      return 'Изтекъл срок'
+    default:
+      return s
+    }
+  }
+
   $: payeeName = paymentInfo.payeeName
   $: payeeReference = paymentInfo.payeeReference
   $: description = paymentInfo.description
   $: contentFormat = description.contentFormat
   $: content = description.content
-  $: currencyName = display?.debtorName !== undefined ? `"${display.debtorName}"` : "unknown currency"
+  $: currencyName = display?.debtorName !== undefined ? `"${display.debtorName}"` : "неизвестна валута"
   $: amountDivisor = display?.amountDivisor ?? 1
   $: decimalPlaces = display?.decimalPlaces ?? 0n
   $: unit = display?.unit ?? '\u00a4'
@@ -48,8 +71,8 @@
   $: unitAmountStep = amountToString(tinyNegligibleAmount, amountDivisor, decimalPlaces)
   $: maxUnitAmount = Number(amountToString(9223372036853775000n, amountDivisor, decimalPlaces))
   $: invalid = invalidPayeeName || invalidUnitAmount || invalidDeadline
-  $: name = payeeName.slice(0, 40) ?? 'unknown payee'
-  $: downloadNameShort = unitAmount ? `Pay ${unitAmount} ${unit.slice(0, 10)} to ${name}` : `Pay ${name}`
+  $: name = payeeName.slice(0, 40) ?? 'неизвестен получател'
+  $: downloadNameShort = unitAmount ? `Плати ${unitAmount} ${unit.slice(0, 10)} на ${name}` : `Плати ${name}`
   $: downloadName = payeeReference ? `${downloadNameShort} - ${payeeReference}` : downloadNameShort
   $: fileName = downloadName.slice(0, 120).replace(/[<>:"/|?*\\]/g, ' ') + '.pr0'
 </script>
@@ -103,23 +126,23 @@
           <Chip chip="account" style="float: right; margin-left: 6px">
             <Text>
               <a href="." style="text-decoration: none; color: #666" on:click|preventDefault={followAccount}>
-                account
+                сметка
               </a>
             </Text>
           </Chip>
         {/if}
-        Payment via {currencyName}
+        Плащане чрез {currencyName}
       </Title>
       <Content>
         {#if !isDraft}
           <div class="transfer-status">
-            <div style="padding-right: 0.3em">Status:</div>
+            <div style="padding-right: 0.3em">Статус:</div>
             <Wrapper>
               <div class="status-name">
-                <span style="text-decoration: underline">{status.toLowerCase()}</span>
+                <span style="text-decoration: underline">{translateStatus(status).toLowerCase()}</span>
                 <span class="status-smalltext">
                   {#if status !== 'Initiated' && status !== 'Successful'}
-                    tap for details
+                    докоснете за подробности
                   {:else}
                     &nbsp;
                   {/if}
@@ -134,13 +157,13 @@
         {:else if content}
           <pre>{content}</pre>
         {:else}
-          <span style="color: #ccc">The payment request does not contain a description.</span>
+          <span style="color: #ccc">Поканата за плащане не съдържа описание.</span>
         {/if}
         {#if dataUrl}
           <div class="save-button-container">
-            <a class="download-link" href={dataUrl} download={fileName} bind:this={downloadLinkElement}>download</a>
+            <a class="download-link" href={dataUrl} download={fileName} bind:this={downloadLinkElement}>изтегли</a>
             <Button type="button" color="secondary" on:click={() => downloadLinkElement?.click()}>
-              <Label>Save this payment request</Label>
+              <Label>Запази тази покана за плащане</Label>
             </Button>
           </div>
         {/if}
@@ -155,7 +178,7 @@
         variant="outlined"
         style="width: 100%"
         type="number"
-        label="Amount"
+        label="Сума"
         input$readonly
         input$step="any"
         bind:invalid={invalidUnitAmount}
@@ -163,7 +186,7 @@
         suffix={unit}
         >
         <HelperText slot="helper" persistent>
-          The amount that will be sent to the payee.
+          Сумата, която ще бъде преведена на получателя.
         </HelperText>
       </Textfield>
     </Cell>
@@ -172,14 +195,14 @@
       <Textfield
         variant="outlined"
         style="width: 100%"
-        label="Payee name"
+        label="Име на получателя"
         input$readonly
         input$spellcheck="false"
         bind:invalid={invalidPayeeName}
         value={payeeName}
         >
         <HelperText slot="helper" persistent>
-          The name of the recipient of the payment.
+          Името на получателя на плащането.
         </HelperText>
       </Textfield>
     </Cell>
@@ -189,14 +212,14 @@
         variant="outlined"
         style="width: 100%"
         type="datetime-local"
-        label="Deadline"
+        label="Срок за плащане"
         required
         input$readonly
         bind:invalid={invalidDeadline}
         value={deadline}
         >
         <HelperText slot="helper" persistent>
-          The payment must be completed before that moment.
+          Плащането трябва да бъде извършено преди този момент.
         </HelperText>
       </Textfield>
     </Cell>
@@ -207,7 +230,7 @@
         variant="outlined"
         style="width: 100%"
         type="number"
-        label="Amount"
+        label="Сума"
         input$min={unitAmountStep}
         input$max={maxUnitAmount}
         input$step={unitAmountStep}
@@ -222,7 +245,7 @@
           {/if}
         </svelte:fragment>
         <HelperText slot="helper" persistent>
-          The amount that will be sent to the payee.
+          Сумата, която ще бъде преведена на получателя.
         </HelperText>
       </Textfield>
     </Cell>
@@ -231,7 +254,7 @@
       <Textfield
         variant="outlined"
         style="width: 100%"
-        label="Payee name"
+        label="Име на получателя"
         input$readonly
         input$maxlength="200"
         input$spellcheck="false"
@@ -245,7 +268,7 @@
           {/if}
         </svelte:fragment>
         <HelperText slot="helper" persistent>
-          The name of the recipient of the payment.
+          Името на получателя на плащането.
         </HelperText>
       </Textfield>
     </Cell>
@@ -256,7 +279,7 @@
         variant="outlined"
         style="width: 100%"
         type="datetime-local"
-        label="Deadline"
+        label="Срок за плащане"
         withTrailingIcon={invalidDeadline}
         bind:invalid={invalidDeadline}
         bind:value={deadline}
@@ -267,7 +290,7 @@
           {/if}
         </svelte:fragment>
         <HelperText slot="helper" persistent>
-          The payment must be completed before that moment.
+          Плащането трябва да бъде извършено преди този момент.
         </HelperText>
       </Textfield>
     </Cell>
