@@ -57,7 +57,7 @@
   }
 </style>
 
-<Page title="Acknowledge changes" hideFloating={openEnterPinDialog}>
+<Page title="Потвърждаване на промени" hideFloating={openEnterPinDialog}>
   <svelte:fragment slot="content">
     <EnterPinDialog bind:open={openEnterPinDialog} performAction={submit} />
 
@@ -68,11 +68,11 @@
         aria-describedby="show-summary-dialog-content"
         on:MDCDialog:closed={() => showSummary = false}
         >
-        <DialogTitle>The new currency summary:</DialogTitle>
+        <DialogTitle>Новото описание на валутата:</DialogTitle>
         <DialogContent style="word-break: break-word">{debtorData.summary}</DialogContent>
         <Actions>
           <Button>
-            <Label>Close</Label>
+            <Label>Затвори</Label>
           </Button>
         </Actions>
       </Dialog>
@@ -85,13 +85,13 @@
         aria-describedby="show-link-dialog-content"
         on:MDCDialog:closed={() => showLink = false}
         >
-        <DialogTitle>The new digital coin link:</DialogTitle>
+        <DialogTitle>Връзката в новата дигитална монета:</DialogTitle>
         <DialogContent style="word-break: break-word">
           <a href="{debtorData.latestDebtorInfo.uri}" target="_blank" rel="noreferrer">{debtorData.latestDebtorInfo.uri}</a>
         </DialogContent>
         <Actions>
           <Button use={[InitialFocus]}>
-            <Label>Close</Label>
+            <Label>Затвори</Label>
           </Button>
         </Actions>
       </Dialog>
@@ -102,9 +102,9 @@
         <Cell spanDevices={{ desktop: 12, tablet: 8, phone: 4 }}>
           <Paper style="margin-top: 12px; margin-bottom: 24px; word-break: break-word" elevation={6}>
             <Title>
-              Changes in "{debtorName}"
+              Промени в "{debtorName}"
               {#if !knownDebtor}
-                (unconfirmed account)
+                (непотвърдена сметка)
               {/if}
             </Title>
             <Content>
@@ -112,38 +112,38 @@
                 {#if changes.configError}
                   <li>
                     {#if configError === undefined}
-                      The previously experienced account configuration
-                      problem has been resolved. Now your account is
-                      configured correctly.
+                      Съществуващият проблем с конфигурацията на сметката
+                      е отстранен. Сега сметката е конфигурирана
+                      правилно.
                     {:else if configError === 'NO_CONNECTION_TO_DEBTOR'}
-                      No connection can be made to the servers that manage
-                      this currency. You will not be able to send or
-                      receive money from this account, but you still can
-                      peg other currencies to it.
+                      Не може да се осъществи връзка със сървърите,
+                      които управляват тази валута. Няма да можете да
+                      изпращате или получавате пари от тази сметка, но
+                      ще можете да фиксирате други валути към нея.
                     {:else if configError === 'CONFIGURATION_IS_NOT_EFFECTUAL'}
-                      An account configuration problem has occurred.
-                      Usually this means that temporarily, a connection
-                      can not be made to the servers that manage this
-                      currency.
+                      Възникна проблем с конфигурацията на сметката.
+                      Обикновено това означава, че временно не може да
+                      се осъществи връзка със сървърите, които
+                      управляват тази валута.
                     {:else}
-                      An account configuration problem has occurred: {configError}.
+                      Възникна проблем с конфигурацията на сметката: {configError}.
                     {/if}
                   </li>
                 {/if}
 
                 {#if changes.amountDivisor || changes.decimalPlaces || changes.unit}
                   <li>
-                    The issuer has declared a new official way to display
-                    currency amounts. Later, you will be asked to approve
-                    this important change.
+                    Издателят е определил нов официален начин за
+                    показване на сумите във валутата. По-късно ще
+                    можете да потвърдите тази важна промяна.
                   </li>
                 {/if}
 
                 {#if changes.debtorName}
                   <li>
-                    The official name of the currency has been changed to
-                    "{debtorData.debtorName}". Later, you will be asked to
-                    approve this important change.
+                    Официалното име на валутата е променено на
+                    "{debtorData.debtorName}". По-късно ще можете да
+                    потвърдите тази важна промяна.
                   </li>
                 {/if}
 
@@ -152,41 +152,40 @@
                     {#if debtorData.peg}
                       {#if action.previousPeg}
                         {#if !changes.pegParams}
-                          The issuer has specified a different digital
-                          coin (a QR code) for the already declared peg
-                          currency. Later, you may be asked to approve
-                          this change.
+                          Издателят е посочил различна дигитална
+                          монета за базовата валута на обявения
+                          фиксиран курс. При необходимост по-късно ще
+                          можете да потвърдите тази промяна.
                         {:else}
-                          The issuer has declared a new, different
-                          currency peg. Later, you will be asked to
-                          approve the new peg.
+                          Издателят на валутата е обявил нов, различен
+                          фиксиран курс. По-късно ще можете да
+                          потвърдите новия фиксиран курс.
                         {/if}
                       {:else}
-                        The issuer has declared a fixed exchange rate
-                        between this currency and some other
-                        currency. Later, you will be asked to approve this
-                        currency peg.
+                        Издателят е обявил фиксиран курс на обмен
+                        между своята валута и друга валута. По-късно
+                        ще можете да потвърдите този фиксиран курс.
                       {/if}
                     {:else}
-                      The previously declared currency peg has been removed.
+                      Предишният фиксиран курс е премахнат.
                     {/if}
                   </li>
                 {/if}
 
                 {#if changes.interestRate}
                   <li>
-                    On {interestRateChangeDate} the issuer changed the
-                    annual interest rate on your account to
-                    {interestRate}%.
+                    На {interestRateChangeDate} издателят е променил
+                    годишния лихвен процент по сметката ви. Новият
+                    лихвен процент е {interestRate}%.
                   </li>
                 {/if}
 
                 {#if changes.debtorHomepage}
                   <li>
                     {#if debtorData.debtorHomepage}
-                      The official home page of the currency has been <a href="{debtorData.debtorHomepage.uri}" target="_blank" rel="noreferrer">changed</a>.
+                      Официалният уебсайт на валутата е <a href="{debtorData.debtorHomepage.uri}" target="_blank" rel="noreferrer">променен</a>.
                     {:else}
-                      The official home page of the currency has been changed.
+                      Официалният уебсайт на валутата е променен.
                     {/if}
                   </li>
                 {/if}
@@ -194,30 +193,29 @@
                 {#if changes.summary}
                   <li>
                     {#if debtorData.summary}
-                      The official currency summary, as stated by the issuer,
-                      has been <a href="." target="_blank" on:click|preventDefault={() => showSummary = true}>updated</a>.
+                      Официалното описание на валутата, предоставено от издателя,
+                      е <a href="." target="_blank" on:click|preventDefault={() => showSummary = true}>обновено</a>.
                     {:else}
-                      The official currency summary, stated by the issuer,
-                      has been removed.
+                      Официалното описание на валутата, предоставено от издателя, е премахнато.
                     {/if}
                     {#if debtorData.debtorHomepage}
-                      You may find more information on the <a href="{debtorData.debtorHomepage.uri}" target="_blank" rel="noreferrer">homepage</a>.
+                      Повече информация може да намерите на <a href="{debtorData.debtorHomepage.uri}" target="_blank" rel="noreferrer">уебсайта</a>.
                     {/if}
                   </li>
                 {/if}
 
                 {#if changes.latestDebtorInfo}
                   <li>
-                    The digital coin (the QR code) of the currency has
-                    changed. The new digital coin contains a different
-                    <LinkPopup bind:show={showLink}>link</LinkPopup>
+                    Дигиталната монета на валутата е променена. Новата
+                    дигитална монета съдържа
+                    различна <LinkPopup bind:show={showLink}>връзка</LinkPopup>.
                   </li>
                 {/if}
 
                 {#if changes.otherChanges}
                   <li>
-                    Some unimportant technical details in the description
-                    of the currency have been changed.
+                    Променени са някои маловажни технически
+                    подробности в описанието на валутата.
                   </li>
                 {/if}
               </ul>
@@ -231,7 +229,7 @@
   <svelte:fragment slot="floating">
     <div class="fab-container">
       <Fab color="primary" on:click={acknowlege} extended>
-        <FabLabel>Acknowlege</FabLabel>
+        <FabLabel>Потвърждавам</FabLabel>
       </Fab>
     </div>
   </svelte:fragment>
