@@ -57,7 +57,7 @@
   }
 </style>
 
-<Page title="Преглед на промените" hideFloating={openEnterPinDialog}>
+<Page title="Преглед на промени" hideFloating={openEnterPinDialog}>
   <svelte:fragment slot="content">
     <EnterPinDialog bind:open={openEnterPinDialog} performAction={submit} />
 

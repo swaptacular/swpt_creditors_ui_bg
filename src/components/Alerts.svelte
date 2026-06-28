@@ -16,7 +16,7 @@
   aria-describedby="alert-content"
   on:MDCDialog:closed={() => app.dismissAlert(alerts[0])}
   >
-  <Title id="alert-title">Error</Title>
+  <Title id="alert-title">Грешка</Title>
   <Content id="alert-content" style="word-break: break-word">
     {alerts[0].message}
   </Content>

@@ -127,7 +127,7 @@
         <Cell span={12}>
           <FormField>
             <Checkbox bind:checked={showForeignActions} />
-            <span slot="label">Покажи проблемните плащания, започнати от други устройства.</span>
+            <span slot="label">Показвай проблемни плащания, започнати от други устройства.</span>
           </FormField>
         </Cell>
         {#if showForeignActions }

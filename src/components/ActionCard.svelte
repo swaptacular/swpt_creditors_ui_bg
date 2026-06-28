@@ -22,11 +22,11 @@
     case 'CreateTransfer':
       return 'Направи плащане'
     case 'AbortTransfer':
-      return action.transfer.result ? "Виж неуспешното плащане" : "Виж забавеното плащане"
+      return action.transfer.result ? "Покажи неуспешното плащане" : "Покажи забавеното плащане"
     case 'CreateAccount':
       return 'Потвърди откриването на сметка'
     case "AckAccountInfo":
-      return 'Преглед на промените'
+      return 'Покажи промените'
     case 'ApprovePeg':
       return 'Одобри фиксирания курс'
     case 'ApproveAmountDisplay':

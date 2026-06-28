@@ -112,7 +112,7 @@
 </style>
 
 <div class="shaking-container">
-  <Page title="Approve display" hideFloating={openEnterPinDialog}>
+  <Page title="Одобряване на начин на показване" hideFloating={openEnterPinDialog}>
     <svelte:fragment slot="content">
       <EnterPinDialog bind:open={openEnterPinDialog} performAction={submit} />
 
@@ -127,18 +127,19 @@
             <Cell spanDevices={{ desktop: 12, tablet: 8, phone: 4 }}>
               <Paper style="margin-top: 12px; margin-bottom: 24px; word-break: break-word" elevation={6}>
                 <Title>
-                  Currency display
+                  Начин на показване
                 </Title>
                 <Content>
                   "{debtorName}"
                   {#if !knownDebtor}
-                    (unconfirmed account)
+                    (непотвърдена сметка)
                   {/if}
-                  has changed the way currency amounts are
-                  displayed. If you choose to use the new way to
-                  display amounts, the {oldUnitAmount} that you have
-                  in your account, in the future will be shown as
-                  {newUnitAmount}. If you are unsure, use the new way.
+                  е променил начина, по който се показват сумите във
+                  валутата. Ако изберете да използвате новия начин за
+                  показване на сумите, {oldUnitAmount}, които имате по
+                  сметката си, в бъдеще ще се показват като
+                  {newUnitAmount}. Ако не сте сигурни, използвайте
+                  новия начин.
                 </Content>
               </Paper>
             </Cell>
@@ -147,11 +148,11 @@
               <div class="radio-group" style="margin-bottom: 8px; word-break: break-word">
                 <FormField>
                   <Radio bind:group={approved} value="yes" touch />
-                    <span slot="label">Use the new way ({newUnitAmount})</span>
+                    <span slot="label">Използвай новия начин ({newUnitAmount})</span>
                 </FormField>
                 <FormField>
                   <Radio bind:group={approved} value="no" touch />
-                    <span slot="label">Use the old way ({oldUnitAmount})</span>
+                    <span slot="label">Използвай стария начин ({oldUnitAmount})</span>
                 </FormField>
               </div>
             </Cell>
@@ -167,7 +168,7 @@
                 withTrailingIcon={invalidNegligibleUnitAmount}
                 bind:value={negligibleUnitAmount}
                 bind:invalid={invalidNegligibleUnitAmount}
-                label="Negligible amount"
+                label="Незначителна сума"
                 suffix="{action.unit.slice(0, 10)}"
                 disabled={approved === 'no'}
                 >
@@ -177,13 +178,14 @@
                   {/if}
                 </svelte:fragment>
                 <HelperText style="word-break: break-word" slot="helper" persistent>
-                  An amount that you consider to be negligible or unimportant. It
-                  must be equal or bigger than {negligibleUnitAmountStep}
-                  {action.unit}. {appConfig.siteTitle} will use this
-                  amount when deciding whether the account can be safely
-                  deleted, and whether an incoming transfer should
-                  be ignored. If you are unsure, leave the default value
-                  unchanged.
+                  Сума, която считате за незначителна или маловажна.
+                  Тя трябва да бъде равна или по-голяма от
+                  {negligibleUnitAmountStep} {action.unit}.
+                  {appConfig.siteTitle} ще използва тази сума, за да
+                  прецени дали сметката може да бъде закрита и дали
+                  даден входящ превод може да бъде игнориран. Ако не
+                  сте сигурни, оставете стойността по подразбиране
+                  непроменена.
                 </HelperText>
               </Textfield>
             </Cell>
@@ -195,7 +197,7 @@
     <svelte:fragment slot="floating">
       <div class="fab-container">
         <Fab color="primary" on:click={confirm} extended>
-          <Label>Approve</Label>
+          <Label>Одобри</Label>
         </Fab>
       </div>
     </svelte:fragment>
