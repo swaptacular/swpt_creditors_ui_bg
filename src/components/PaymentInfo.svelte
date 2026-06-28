@@ -131,7 +131,7 @@
             </Text>
           </Chip>
         {/if}
-        Плащане чрез {currencyName}
+        Плащане през {currencyName}
       </Title>
       <Content>
         {#if !isDraft}

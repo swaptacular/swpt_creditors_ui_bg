@@ -20,27 +20,27 @@
   function getButtonLabel(action: ActionRecordWithId): string {
     switch (action.actionType) {
     case 'CreateTransfer':
-      return 'Make payment'
+      return 'Направи плащане'
     case 'AbortTransfer':
-      return action.transfer.result ? "Show the failed payment" : "Show the delayed payment"
+      return action.transfer.result ? "Виж неуспешното плащане" : "Виж забавеното плащане"
     case 'CreateAccount':
-      return 'Confirm account'
+      return 'Потвърди откриването на сметка'
     case "AckAccountInfo":
-      return 'Acknowledge changes'
+      return 'Преглед на промените'
     case 'ApprovePeg':
-      return 'Approve peg'
+      return 'Одобри фиксирания курс'
     case 'ApproveAmountDisplay':
-      return 'Approve display'
+      return 'Одобри начина на показване'
     case 'ApproveDebtorName':
-      return 'Approve name'
+      return 'Одобри името'
     case 'ConfigAccount':
-      return 'Modify account'
+      return 'Промени настройките'
     case 'UpdatePolicy':
-      return 'Modify policy'
+      return 'Промени правилата'
     case 'PaymentRequest':
-      return 'Request payment'
+      return 'Поискай плащане'
     default:
-      return 'Unknown action type'
+      return 'Неизвестен вид действие'
     }
   }
 
@@ -62,16 +62,16 @@
         if (display) {
           const unit = display.unit
           const unitAmount = amountToString(amount, display.amountDivisor, display.decimalPlaces)
-          return `Send ${unitAmount} ${unit} to ${payeeName}.`
+          return `Плати ${unitAmount} ${unit} на ${payeeName}.`
         } else {
           const unit = "\u00a4"
           const unitAmount = amountToString(amount, 1, 0n)
-          return `Send ${unitAmount} ${unit} to ${payeeName}.`
+          return `Плати ${unitAmount} ${unit} на ${payeeName}.`
         }
       }
       case "AbortTransfer": {
         const transfer = action.transfer
-        const title = transfer.result ? "Failed payment" : "Delayed payment"
+        const title = transfer.result ? "Неуспешно плащане" : "Забавено плащане"
         const payeeName = transfer.paymentInfo.payeeName
         let amountDivisor = 1
         let decimalPlaces = 0n
@@ -85,58 +85,58 @@
           }
         }
         const unitAmount = amountToString(transfer.amount, amountDivisor, decimalPlaces)
-        return `${title}: ${unitAmount} ${unit} to ${payeeName}.`
+        return `${title}: ${unitAmount} ${unit} на ${payeeName}.`
       }
       case "CreateAccount": {
         const editedDebtorName = action.accountCreationState?.editedDebtorName
         const descripiton = editedDebtorName !== undefined
-          ? `Confirm account with "${editedDebtorName}".`
-          : "Create a new account."
+          ? `Потвърди откриването на сметка към "${editedDebtorName}".`
+          : "Открий нова сметка."
         return descripiton
       }
       case "AckAccountInfo": {
         const debtorName = getDebtorName(action.accountUri)
         const descripiton = debtorName
-          ? `There have been some changes in the "${debtorName}" currency.`
-          : 'A currency has been changed.'
+          ? `Има някои промени във валутата "${debtorName}".`
+          : 'Има някои промени в една от валутите.'
         return descripiton
       }
       case 'ApprovePeg': {
         const debtorName = getDebtorName(action.accountUri)
         const descripiton = debtorName
-          ? `Approve a fixed exchange rate between "${debtorName}" and another currency.`
-          : 'Approve a fixed exchange rate between two currencies.'
+          ? `Одобри фиксиран курс на обмен между "${debtorName}" и друга валута.`
+          : 'Одобри фиксиран курс на обмен между две валути.'
         return descripiton
       }
       case 'ApproveAmountDisplay': {
         const debtorName = getDebtorName(action.accountUri)
         return debtorName ?
-          `Approve a new way to display currency amounts for "${debtorName}".` :
-          'Approve a new way to display currency amounts.'
+          `Одобри нов начин за показване на сумите във валутата "${debtorName}".` :
+          'Одобри нов начин за показване на суми.'
       }
       case 'ApproveDebtorName': {
         const debtorName = getDebtorName(action.accountUri)
-        return debtorName ? `Approve a new name for "${debtorName}".` : 'Approve a new name.'
+        return debtorName ? `Одобри ново име за "${debtorName}".` : 'Одобри ново име.'
       }
       case 'ConfigAccount': {
         const debtorName = getDebtorName(action.accountUri)
         return debtorName
-          ? `Modify the configuration settings for your account with "${debtorName}".`
-          : 'Modify account configuration settings.'
+          ? `Промени настройките на сметката ми към "${debtorName}".`
+          : 'Промени настройките на сметка.'
       }
       case 'UpdatePolicy': {
         const debtorName = getDebtorName(action.accountUri)
         return debtorName
-          ? `Modify the exchange policy for your account with "${debtorName}".`
-          : 'Modify exchange policy.'
+          ? `Промени правилата за автоматична обмяна по сметката ми към "${debtorName}".`
+          : 'Промени правилата за автоматична обмяна по една от сметките.'
       }
       case 'PaymentRequest': {
         const debtorName = getDebtorName(action.accountUri)
         if (!debtorName) {
-          return 'Request payment.'
+          return 'Поискай плащане.'
         }
         if (action.sealedAt === undefined) {
-          return `Request payment via "${debtorName}".`
+          return `Поискай плащане през "${debtorName}".`
         } else {
           const n = 120  // number of characters to show from the payment note.
           const s = action.editedNote
@@ -147,14 +147,14 @@
           const display = app.accountsMap.getAccountDisplay(action.accountUri)
           if (action.editedAmount && display) {
             const unitAmount = amountToString(action.editedAmount, display.amountDivisor, display.decimalPlaces)
-            return `Request ${unitAmount} ${display.unit} via "${debtorName}"${note}.`
+            return `Поискай ${unitAmount} ${display.unit} през "${debtorName}"${note}.`
           } else {
-            return `Request payment via "${debtorName}"${note}.`
+            return `Поискай плащане през "${debtorName}"${note}.`
           }
         }
       }
       default:
-        return "Unknown action type"
+        return "Неизвестен вид действие"
     }
   }
 </script>

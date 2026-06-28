@@ -57,7 +57,7 @@
   }
 </style>
 
-<Page title="Потвърждаване на промени" hideFloating={openEnterPinDialog}>
+<Page title="Преглед на промените" hideFloating={openEnterPinDialog}>
   <svelte:fragment slot="content">
     <EnterPinDialog bind:open={openEnterPinDialog} performAction={submit} />
 
@@ -229,7 +229,7 @@
   <svelte:fragment slot="floating">
     <div class="fab-container">
       <Fab color="primary" on:click={acknowlege} extended>
-        <FabLabel>Потвърждавам</FabLabel>
+        <FabLabel>Разбрах</FabLabel>
       </Fab>
     </div>
   </svelte:fragment>

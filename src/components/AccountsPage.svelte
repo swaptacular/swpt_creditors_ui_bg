@@ -221,7 +221,7 @@
         </LayoutGrid>
       {:else}
         <p class="no-matches">
-          Няма сметки, които отговарят на зададения филтър.
+          Няма сметки, отговарящи на зададения критерий за търсене.
         </p>
       {/if}
 
@@ -261,7 +261,7 @@
             variant="outlined"
             type="text"
             style="width: 100%"
-            label="Филтриране по име"
+            label="Търсене по име"
             input$spellcheck="false"
             bind:this={searchInput}
             bind:value={searchText}
