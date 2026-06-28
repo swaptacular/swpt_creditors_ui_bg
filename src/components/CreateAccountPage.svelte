@@ -126,7 +126,7 @@
   $: peggedDebtorName = getPeggedDebtorName(model)
   $: action = model.action
   $: isCreateAccountAction = action.actionType === 'CreateAccount'
-  $: pageTitle = isCreateAccountAction ? 'Потвърждаване на сметка' : 'Потвърждаване на сметка'
+  $: pageTitle = isCreateAccountAction ? 'Потвърждаване на сметка' : 'Откриване на сметка'
   $: data = model.createAccountData
   $: negligibleUnitAmountStep = formatAsUnitAmount(action.accountCreationState?.tinyNegligibleAmount)
   $: invalid = (
@@ -232,13 +232,13 @@
                   постоянен курс на обмен
                 </span>
                 между неговата валута (обвързаната валута) и друга
-                валута (базовата валута).
+                валута (опорната валута).
               </p>
               <p>
                 Издателят на валутата "{peggedDebtorName}" е обявил
                 фиксиран курс на обмен с валутата
                 "{data.debtorData.debtorName}". Преди да одобрите този
-                фиксиран курс, първо трябва да си
+                фиксиран курс, първо трябва да
                 <span style="font-weight: bold">
                   откриете сметка към "{data.debtorData.debtorName}".
                 </span>
@@ -384,12 +384,12 @@
       <svelte:fragment slot="floating">
         <div class="fab-container">
           <Fab on:click={cancel} extended>
-            <Label>Отмени</Label>
+            <Label>Откажи</Label>
           </Fab>
         </div>
         <div class="fab-container">
           <Fab color="primary" on:click={confirm} extended>
-            <Label>{isCreateAccountAction ? 'Потвърди' : 'Потвърди'}</Label>
+            <Label>{isCreateAccountAction ? 'Потвърди' : 'Открий сметка'}</Label>
           </Fab>
         </div>
       </svelte:fragment>
