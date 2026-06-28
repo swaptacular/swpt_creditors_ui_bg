@@ -219,7 +219,7 @@
         value={deadline}
         >
         <HelperText slot="helper" persistent>
-          Плащането трябва да бъде извършено преди този момент.
+          Плащането трябва да бъде извършено преди тази дата и час.
         </HelperText>
       </Textfield>
     </Cell>
@@ -290,7 +290,7 @@
           {/if}
         </svelte:fragment>
         <HelperText slot="helper" persistent>
-          Плащането трябва да бъде извършено преди този момент.
+          Плащането трябва да бъде извършено преди тази дата и час.
         </HelperText>
       </Textfield>
     </Cell>

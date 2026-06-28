@@ -133,9 +133,9 @@
 
                 {#if changes.amountDivisor || changes.decimalPlaces || changes.unit}
                   <li>
-                    Издателят е определил нов официален начин за
-                    показване на сумите във валутата. По-късно ще
-                    можете да потвърдите тази важна промяна.
+                    Издателят е определил нов начин за показване на
+                    сумите във валутата. По-късно ще можете да
+                    потвърдите тази важна промяна.
                   </li>
                 {/if}
 
@@ -183,9 +183,9 @@
                 {#if changes.debtorHomepage}
                   <li>
                     {#if debtorData.debtorHomepage}
-                      Официалният уебсайт на валутата е <a href="{debtorData.debtorHomepage.uri}" target="_blank" rel="noreferrer">променен</a>.
+                      Уебсайтът на валутата е <a href="{debtorData.debtorHomepage.uri}" target="_blank" rel="noreferrer">променен</a>.
                     {:else}
-                      Официалният уебсайт на валутата е променен.
+                      Уебсайтът на валутата е променен.
                     {/if}
                   </li>
                 {/if}
@@ -193,10 +193,10 @@
                 {#if changes.summary}
                   <li>
                     {#if debtorData.summary}
-                      Официалното описание на валутата, предоставено от издателя,
+                      Описанието на валутата, предоставено от издателя,
                       е <a href="." target="_blank" on:click|preventDefault={() => showSummary = true}>обновено</a>.
                     {:else}
-                      Официалното описание на валутата, предоставено от издателя, е премахнато.
+                      Описанието на валутата, предоставено от издателя, е премахнато.
                     {/if}
                     {#if debtorData.debtorHomepage}
                       Повече информация може да намерите на <a href="{debtorData.debtorHomepage.uri}" target="_blank" rel="noreferrer">уебсайта</a>.
