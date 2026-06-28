@@ -79,7 +79,7 @@
   }
 </style>
 
-<Page title="Actions" scrollTop={model.scrollTop} scrollLeft={model.scrollLeft} >
+<Page title="Действия" scrollTop={model.scrollTop} scrollLeft={model.scrollLeft} >
   <svelte:fragment slot="content">
     {#if hasRegularActions }
       <LayoutGrid>
@@ -94,31 +94,31 @@
         <LayoutGrid>
           <Cell>
             <Paper elevation={8} style="margin: 8px 0">
-              <Title>Are you new to {appConfig.siteTitle}?</Title>
+              <Title>Нови ли сте в {appConfig.siteTitle}?</Title>
               <Content>
-                Each time you open this app, you will see the
-                "Actions" screen first. This screen shows things that
-                require your attention, such as actions that have been
-                started but not yet completed.
+                Всеки път, когато отваряте това приложение, първо ще
+                виждате екрана „Действия“. Този екран показва неща,
+                които изискват вашето внимание, като действия, които
+                са започнати, но все още не са завършени.
               </Content>
             </Paper>
           </Cell>
           <Cell>
             <Card padded>
               <CardContent style="line-height: 1.4">
-                Press the
+                Натиснете бутона
                 <Icon class="material-icons" style="vertical-align: middle">account_balance_wallet</Icon>
-                button below to check the contents of your wallet, or
-                to request a payment.
+                по-долу, за да проверите портфейла си или да поискате
+                плащане.
               </CardContent>
             </Card>
           </Cell>
         </LayoutGrid>
       {:else}
         <p class="no-actions">
-          Press the
+          Натиснете бутона
           <Icon class="material-icons" style="vertical-align: middle">qr_code_scanner</Icon>
-          button below to make a payment.
+          по-долу, за да направите плащане.
         </p>
       {/if}
     {/if}
@@ -127,7 +127,7 @@
         <Cell span={12}>
           <FormField>
             <Checkbox bind:checked={showForeignActions} />
-            <span slot="label">Show troubled payments initiated from other devices.</span>
+            <span slot="label">Покажи проблемните плащания, започнати от други устройства.</span>
           </FormField>
         </Cell>
         {#if showForeignActions }

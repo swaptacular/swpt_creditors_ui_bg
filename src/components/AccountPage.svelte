@@ -291,7 +291,7 @@
               <Fab color="primary" style="vertical-align: middle">
                 <Icon class="material-icons">receipt</Icon>
               </Fab>
-              за да направите покана за плащане.
+              за да поискате плащане.
             </p>
             <p class="button-help">
               Използвайте
