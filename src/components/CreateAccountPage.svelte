@@ -208,7 +208,7 @@
         </div>
         <div class="fab-container">
           <Fab color="primary" on:click={retry} extended>
-            <Label>Опитай отново</Label>
+            <Label>Опитай пак</Label>
           </Fab>
         </div>
       </svelte:fragment>
@@ -389,7 +389,7 @@
         </div>
         <div class="fab-container">
           <Fab color="primary" on:click={confirm} extended>
-            <Label>{isCreateAccountAction ? 'Потвърди' : 'Открий сметка'}</Label>
+            <Label>{isCreateAccountAction ? 'Потвърди' : 'Продължи'}</Label>
           </Fab>
         </div>
       </svelte:fragment>
