@@ -197,7 +197,7 @@
     <svelte:fragment slot="floating">
       <div class="fab-container">
         <Fab color="primary" on:click={confirm} extended>
-          <Label>Одобри</Label>
+          <Label>Одобрявам</Label>
         </Fab>
       </div>
     </svelte:fragment>

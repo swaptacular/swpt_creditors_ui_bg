@@ -164,7 +164,7 @@
 </style>
 
 <div class="shaking-container">
-  <Page title="Approve peg" hideFloating={openEnterPinDialog}>
+  <Page title="Одобряване на фиксиран курс" hideFloating={openEnterPinDialog}>
     <svelte:fragment slot="content">
       <EnterPinDialog bind:open={openEnterPinDialog} performAction={submit} />
 
@@ -175,7 +175,7 @@
           aria-describedby="show-currencies-dialog-content"
           on:MDCDialog:closed={() => showCurrencies = false}
           >
-          <DialogTitle>Indirectly pegged currencies:</DialogTitle>
+          <DialogTitle>Непряко обвързани валути:</DialogTitle>
           <DialogContent style="word-break: break-word">
             <ul class="currency-list">
               {#each currencyList as currency }
@@ -185,7 +185,7 @@
           </DialogContent>
           <Actions>
             <Button>
-              <ButtonLabel>Close</ButtonLabel>
+              <ButtonLabel>Затвори</ButtonLabel>
             </Button>
           </Actions>
         </Dialog>
@@ -201,52 +201,51 @@
           <LayoutGrid>
             <Cell spanDevices={{ desktop: 12, tablet: 8, phone: 4 }}>
               <Paper style="margin-top: 12px; margin-bottom: 24px; word-break: break-word" elevation={6}>
-                <Title>Currency peg</Title>
+                <Title>Фиксиран курс</Title>
                 <Content>
                   <p>
                     "{peggedDebtorName}"
                     {#if !peggedKnownDebtor}
-                      (unconfirmed account)
+                      (непотвърдена сметка)
                     {/if}
-                    has declared a fixed exchange rate with
-                    "{pegDebtorName}". If this peg is approved:
+                    е обявил фиксиран курс на обмен с
+                    "{pegDebtorName}". Ако този фиксиран курс бъде одобрен:
                   </p>
                   <ul class="checklist">
                     <li>
-                      Every
-                      <em class="amount">{peggedUnitAmount}</em> in your account
-                      with "{peggedDebtorName}", will be considered
-                      equivalent to
+                      Всеки
+                      <em class="amount">{peggedUnitAmount}</em> във вашата сметка
+                      към "{peggedDebtorName}", ще се приемат за равни на
                       <em class="amount">{pegUnitAmount}</em>.
                     </li>
                     {#if finalUnitAmount !== undefined }
                       <li>
-                        As "{pegDebtorName}" is by itself pegged to
-                        another currency, every
-                        <em class="amount">{peggedUnitAmount}</em> in
-                        your account with "{peggedDebtorName}", will
-                        also be considered equivalent to
+                        Тъй като "{pegDebtorName}" е
+                        обвързан с друга валута, всеки
+                        <em class="amount">{peggedUnitAmount}</em> във
+                        вашата сметка към "{peggedDebtorName}" ще
+                        се приемат за равни на
                         <em class="amount">{finalUnitAmount}</em>.
                       </li>
                     {/if}
                     {#if currencyList.length > 0}
                       <li>
                         {#if currencyList.length === 1}
-                          <LinkPopup bind:show={showCurrencies}>1 other currency</LinkPopup>
-                          will get indirectly pegged to
-                          "{pegDebtorName}", which may change the
-                          way its amounts are displayed.
+                          <LinkPopup bind:show={showCurrencies}>1 друга валута</LinkPopup>
+                          ще бъде непряко обвързана с
+                          "{pegDebtorName}", което може да промени
+                          начина, по който се показват нейните суми.
                         {:else}
-                          <LinkPopup bind:show={showCurrencies}>{currencyList.length} other currencies</LinkPopup>
-                          will get indirectly pegged to
-                          "{pegDebtorName}", which may change the
-                          way their amounts are displayed.
+                          <LinkPopup bind:show={showCurrencies}>{currencyList.length} други валути</LinkPopup>
+                          ще бъдат непряко обвързани с
+                          "{pegDebtorName}", което може да промени
+                          начина, по който се показват техните суми.
                         {/if}
                       </li>
                     {/if}
                     <li>
-                      More possibilities will exist for automatic
-                      exchanges between currencies.
+                      Ще има повече възможности за автоматична обмяна
+                      между валути.
                     </li>
                   </ul>
                 </Content>
@@ -257,11 +256,11 @@
               <div class="radio-group" style="margin-top: -10px; word-break: break-word">
                 <FormField>
                   <Radio bind:group={approved} value="yes" touch />
-                  <span slot="label">Approve this peg</span>
+                  <span slot="label">Одобрявам този фиксиран курс</span>
                 </FormField>
                 <FormField>
                   <Radio bind:group={approved} value="no" touch />
-                  <span slot="label">Do not approve this peg</span>
+                  <span slot="label">Не одобрявам този фиксиран курс</span>
                 </FormField>
               </div>
             </Cell>
@@ -273,7 +272,7 @@
     <svelte:fragment slot="floating">
       <div class="fab-container">
         <Fab color="primary" on:click={confirm} extended>
-          <Label>Submit decision</Label>
+          <Label>Потвърди решението</Label>
         </Fab>
       </div>
     </svelte:fragment>

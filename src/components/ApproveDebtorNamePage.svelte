@@ -129,7 +129,7 @@
 </style>
 
 <div class="shaking-container">
-  <Page title="Approve name" hideFloating={openEnterPinDialog}>
+  <Page title="Одобряване на име" hideFloating={openEnterPinDialog}>
     <svelte:fragment slot="content">
       <EnterPinDialog bind:open={openEnterPinDialog} performAction={submit} />
 
@@ -144,21 +144,21 @@
             <Cell spanDevices={{ desktop: 12, tablet: 8, phone: 4 }}>
               <Paper style="margin-top: 12px; margin-bottom: 24px; word-break: break-word" elevation={6}>
                 <Title>
-                  Currency name
+                  Име на валута
                 </Title>
                 <Content>
                   <p>
                     {#if changedName}
                       "{oldName}"
                       {#if !knownDebtor}
-                        (unconfirmed account)
+                        (непотвърдена сметка)
                       {/if}
-                      has changed the currency's official name to "{newName}".
+                      е променил официалното име на валутата на "{newName}".
                     {:else}
-                      Now the official name of the currency is
-                      "{newName}"{#if !knownDebtor} (unconfirmed account).{:else}.{/if}
+                      Сега официалното име на валутата е
+                      "{newName}"{#if !knownDebtor} (непотвърдена сметка).{:else}.{/if}
                     {/if}
-                    At the moment, you have {availableAmount} {amountUnit} available in this account.
+                    В момента разполагате с {availableAmount} {amountUnit} по тази сметка.
                   </p>
                 </Content>
               </Paper>
@@ -169,10 +169,9 @@
                 <FormField>
                   <Checkbox bind:checked={unsetKnownDebtor} on:click={() => unsetKnownDebtor || setDebtorName(newName)} />
                   <span slot="label">
-                    This change is confusing. I am no longer sure
-                    about the true identity of the issuer of this
-                    currency, and I no longer wish to receive payments
-                    in it.
+                    Тази промяна е объркваща. Вече не съм сигурен в
+                    истинската самоличност на издателя на тази валута
+                    и не желая повече да получавам плащания в нея.
                   </span>
                 </FormField>
               </Cell>
@@ -187,7 +186,7 @@
                 input$spellcheck="false"
                 bind:invalid={invalidDebtorName}
                 bind:value={debtorName}
-                label="Currency name"
+                label="Име на валутата"
                 >
                 <svelte:fragment slot="trailingIcon">
                   {#if invalidDebtorName || !uniqueDebtorName}
@@ -195,7 +194,7 @@
                   {/if}
                 </svelte:fragment>
                 <HelperText slot="helper" persistent>
-                  Every account must have a unique currency name.
+                  Всяка сметка трябва да има уникално име на валутата.
                 </HelperText>
               </Textfield>
             </Cell>
@@ -211,7 +210,7 @@
                       disabled={unsetKnownDebtor}
                       on:click={() => setDebtorName(newName)}
                       />
-                      <span slot="label">Use the new name</span>
+                      <span slot="label">Използвай новото име</span>
                   </FormField>
                   <FormField>
                     <Radio
@@ -221,7 +220,7 @@
                       disabled={unsetKnownDebtor}
                       on:click={() => setDebtorName(oldName)}
                       />
-                      <span slot="label">Use the old name</span>
+                      <span slot="label">Използвай старото име</span>
                   </FormField>
                 </div>
               </Cell>
@@ -234,7 +233,7 @@
     <svelte:fragment slot="floating">
       <div class="fab-container">
         <Fab color="primary" on:click={confirm} extended>
-          <Label>Approve</Label>
+          <Label>Одобрявам</Label>
         </Fab>
       </div>
     </svelte:fragment>
