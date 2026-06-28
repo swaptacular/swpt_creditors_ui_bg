@@ -136,7 +136,7 @@
     {:else}
       <div class="fab-container">
         <Fab color="primary" on:click={cancel} extended>
-          <Label>Отменени плащането</Label>
+          <Label>Отмени плащането</Label>
         </Fab>
       </div>
     {/if}

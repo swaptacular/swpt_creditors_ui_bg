@@ -90,13 +90,13 @@
       <p class="transfer">
         <span>{displayAmount}</span>
         {#if rationale === 'interest'}
-          interest payment
+          плащане на лихва
         {:else if rationale === 'agent'}
-          automatic exchange
+          автоматична обмяна
         {:else if amount < 0 && payeeName}
-          paid to "{payeeName}"
+          платени на "{payeeName}"
         {:else if amount > 0 && committedTransfer && committedTransfer.noteFormat !== '.' && payeeReference}
-          toward "{payeeReference.slice(0, 36)}"
+          за "{payeeReference.slice(0, 36)}"
         {/if}
       </p>
       <p class="transfer-note">

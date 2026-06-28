@@ -32,7 +32,7 @@
   let invalidDebtorName: boolean
   let invalidNegligibleUnitAmount: boolean
 
-  const CONFIRM_MESSAGE = 'Forcing the deletion of this account will result in losing the remaining amount on it.'
+  const CONFIRM_MESSAGE = 'Принудителното закриване на тази сметка ще доведе до загуба на оставащата сума по нея.'
 
   function createUpdatedAction(): ConfigAccountActionWithId {
     uniqueDebtorName = isUniqueDebtorName(debtorName, debtorIdentityUri)
@@ -160,7 +160,7 @@
 </style>
 
 <div class="shaking-container">
-  <Page title="Modify account" hideFloating={openEnterPinDialog}>
+  <Page title="Промяна на настройките на сметка" hideFloating={openEnterPinDialog}>
     <svelte:fragment slot="content">
       <EnterPinDialog bind:open={openEnterPinDialog} performAction={submit} />
 
@@ -182,9 +182,9 @@
                 >
                 <svelte:fragment slot="title">
                   {#if knownDebtor}
-                    Account with "{display.debtorName}"
+                    Сметка към "{display.debtorName}"
                   {:else}
-                    Unconfirmed account with "{display.debtorName}"
+                    Непотвърдена сметка към "{display.debtorName}"
                   {/if}
                 </svelte:fragment>
               </AccountInfo>
@@ -199,7 +199,7 @@
                 input$spellcheck="false"
                 bind:invalid={invalidDebtorName}
                 bind:value={debtorName}
-                label="Currency name"
+                label="Име на валутата"
                 >
                 <svelte:fragment slot="trailingIcon">
                   {#if invalidDebtorName || !uniqueDebtorName}
@@ -207,7 +207,7 @@
                   {/if}
                 </svelte:fragment>
                 <HelperText slot="helper" persistent>
-                  Every account must have a unique currency name.
+                  Всяка сметка трябва да има уникално име на валута.
                 </HelperText>
               </Textfield>
             </Cell>
@@ -223,7 +223,7 @@
                 withTrailingIcon={invalidNegligibleUnitAmount}
                 bind:value={negligibleUnitAmount}
                 bind:invalid={invalidNegligibleUnitAmount}
-                label="Negligible amount"
+                label="Незначителна сума"
                 suffix="{unit.slice(0, 10)}"
                 >
                 <svelte:fragment slot="trailingIcon">
@@ -232,13 +232,14 @@
                   {/if}
                 </svelte:fragment>
                 <HelperText style="word-break: break-word" slot="helper" persistent>
-                  An amount that you consider to be negligible or unimportant. It
-                  must be equal or bigger than {negligibleUnitAmountStep}
-                  {unit}. {appConfig.siteTitle} will use this amount
-                  when deciding whether the account can be safely
-                  deleted, and whether an incoming transfer should
-                  be ignored. If you are unsure, leave the default value
-                  unchanged.
+                  Сума, която считате за незначителна или маловажна.
+                  Тя трябва да бъде равна или по-голяма от
+                  {negligibleUnitAmountStep} {unit}.
+                  {appConfig.siteTitle} ще използва тази сума, за да
+                  прецени дали сметката може да бъде закрита и дали
+                  дадено входящо плащане може да бъде пренебрегнато. Ако не
+                  сте сигурни, оставете стойността по подразбиране
+                  непроменена.
                 </HelperText>
               </Textfield>
             </Cell>
@@ -248,7 +249,7 @@
                 <FormField>
                   <Checkbox bind:checked={preserveCurrentDisplay} />
                   <span slot="label">
-                    Use a nonstandard way to display currency amounts.
+                    Използвай нестандартен начин за показване на суми във валутата.
                   </span>
                 </FormField>
               </Cell>
@@ -258,10 +259,11 @@
               <FormField>
                 <Checkbox bind:checked={scheduledForDeletion} />
                 <span slot="label">
-                  Scheduled for deletion: The account can not receive
-                  payments, and unless the currency is used as an
-                  anchor for a peg, the account will be deleted some
-                  time after the remaining amount becomes negligible.
+                  Определена за закриване: Сметката не може да
+                  получава плащания и, освен ако валутата не се
+                  използва като базова валута за фиксиран курс,
+                  сметката ще бъде закрита известно време след като
+                  оставащата сума по нея стане незначителна.
                 </span>
               </FormField>
             </Cell>
@@ -270,9 +272,9 @@
               <FormField>
                 <Checkbox bind:checked={allowUnsafeDeletion} disabled={disableForceDeletion} />
                 <span slot="label" class:grayed={disableForceDeletion}>
-                  Forced account deletion: The account will be deleted
-                  irrespective of the remaining amount. Use this with
-                  extreme caution!
+                  Принудително закриване на сметката: Сметката ще бъде
+                  закрита независимо от оставащата сума по нея.
+                  Бъдете изключително внимателни!
                 </span>
               </FormField>
             </Cell>
@@ -284,12 +286,12 @@
     <svelte:fragment slot="floating">
       <div class="fab-container">
         <Fab on:click={cancel} extended>
-          <Label>Cancel</Label>
+          <Label>Отмени</Label>
         </Fab>
       </div>
       <div class="fab-container">
         <Fab color="primary" on:click={modify} extended>
-          <Label>Modify</Label>
+          <Label>Промени</Label>
         </Fab>
       </div>
     </svelte:fragment>

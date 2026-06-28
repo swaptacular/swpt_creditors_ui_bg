@@ -194,7 +194,7 @@
                   {/if}
                 </svelte:fragment>
                 <HelperText slot="helper" persistent>
-                  Всяка сметка трябва да има уникално име на валутата.
+                  Всяка сметка трябва да има уникално име на валута.
                 </HelperText>
               </Textfield>
             </Cell>

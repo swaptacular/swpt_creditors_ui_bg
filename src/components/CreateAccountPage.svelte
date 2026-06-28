@@ -126,7 +126,7 @@
   $: peggedDebtorName = getPeggedDebtorName(model)
   $: action = model.action
   $: isCreateAccountAction = action.actionType === 'CreateAccount'
-  $: pageTitle = isCreateAccountAction ? 'Confirm account' : 'Create anchor account'
+  $: pageTitle = isCreateAccountAction ? 'Потвърждаване на сметка' : 'Потвърждаване на сметка'
   $: data = model.createAccountData
   $: negligibleUnitAmountStep = formatAsUnitAmount(action.accountCreationState?.tinyNegligibleAmount)
   $: invalid = (
@@ -191,11 +191,11 @@
     <Page title={pageTitle}>
       <svelte:fragment slot="content">
         <Paper style="margin: 36px 18px" elevation={8}>
-          <Title>Unknown currency</Title>
+          <Title>Неизвестна валута</Title>
           <Content>
-            Can not obtain information about the digital
-            currency. This is either a temporary problem, or the
-            currency is not configured correctly.
+            Не може да бъде намерена информация за дигиталната валута.
+            Това е или временен проблем, или валутата не е
+            конфигурирана правилно.
           </Content>
         </Paper>
       </svelte:fragment>
@@ -203,12 +203,12 @@
       <svelte:fragment slot="floating">
         <div class="fab-container">
           <Fab on:click={cancel} extended>
-            <Label>Cancel</Label>
+            <Label>Отмени</Label>
           </Fab>
         </div>
         <div class="fab-container">
           <Fab color="primary" on:click={retry} extended>
-            <Label>Retry</Label>
+            <Label>Опитай отново</Label>
           </Fab>
         </div>
       </svelte:fragment>
@@ -223,30 +223,30 @@
             aria-labelledby="ack-peg-explanation-dialog-title"
             aria-describedby="ack-peg-explanation-dialog-content"
             >
-            <DialogTitle>What a "currency peg" is?</DialogTitle>
+            <DialogTitle>Какво е фиксиран курс на обмен?</DialogTitle>
             <DialogContent style="word-break: break-word">
               <p class="peg-definition">
-                A currency peg is a promise by the issuer of the
-                currency to maintain a
+                Фиксираният курс на обмен е обещание от издателя на
+                валутата да поддържа
                 <span style="font-weight: bold">
-                  fixed exchange rate
+                  постоянен курс на обмен
                 </span>
-                between their currency (the pegged currency) and some
-                other currency (the anchor currency).
+                между неговата валута (обвързаната валута) и друга
+                валута (базовата валута).
               </p>
               <p>
-                The issuer of the "{peggedDebtorName}" currency, has
-                declared a fixed exchange rate with the
-                "{data.debtorData.debtorName}" currency. Before you can
-                approve this peg, first you should
+                Издателят на валутата "{peggedDebtorName}" е обявил
+                фиксиран курс на обмен с валутата
+                "{data.debtorData.debtorName}". Преди да одобрите този
+                фиксиран курс, първо трябва да си
                 <span style="font-weight: bold">
-                  create an account with "{data.debtorData.debtorName}".
+                  откриете сметка към "{data.debtorData.debtorName}".
                 </span>
               </p>
             </DialogContent>
             <Actions>
               <Button use={[InitialFocus]} on:click={gotIt}>
-                <ButtonLabel>Got it</ButtonLabel>
+                <ButtonLabel>Разбрах</ButtonLabel>
               </Button>
             </Actions>
           </Dialog>
@@ -269,9 +269,9 @@
                   >
                   <svelte:fragment slot="title">
                     {#if data.account.display.debtorName === undefined}
-                      Account with "{data.debtorData.debtorName}"
+                      Сметка към "{data.debtorData.debtorName}"
                     {:else}
-                      Existing account with "{data.debtorData.debtorName}"
+                      Съществуваща сметка към "{data.debtorData.debtorName}"
                     {/if}
                   </svelte:fragment>
                   <svelte:fragment slot="content">
@@ -280,25 +280,27 @@
                         <em class="amount">
                           {formatAsUnitAmount(data.account.ledger.principal)}&nbsp;{data.unit}
                         </em>
-                        are available in your account.
+                        са налични по вашата сметка.
                       </li>
                       {#if data.account.display.debtorName === undefined && data.debtorData.peg}
                         <li>
-                          This currency is pegged to another
-                          currency. Later, you will be asked to
-                          approve this currency peg.
+                          Тази валута е обвързана с друга валута.
+                          По-късно ще бъдете помолени да одобрите
+                          фиксирания курс, обявен от издателя на
+                          валутата.
                         </li>
                       {/if}
                     </ul>
                     {#if isCreateAccountAction}
                       <p class="warning">
-                        <strong>Note:</strong> You must check the box
-                        below to confirm that you are certain about
-                        the true identity of the issuer of this
-                        currency. The risks here are similar to those
-                        when a stranger introduces you to an
-                        unfamiliar foreign currency — you could be
-                        tricked by fraudsters!
+                        <strong>Забележка:</strong> Трябва да
+                        поставите отметка в полето по-долу, за да
+                        потвърдите, че сте сигурни в истинската
+                        самоличност на издателя на тази валута.
+                        Рисковете тук са подобни на тези, когато
+                        непознат ви представи чуждестранна валута,
+                        която не познавате — може да бъдете подведени
+                        от измамници!
                       </p>
                     {/if}
                   </svelte:fragment>
@@ -314,8 +316,8 @@
                       indeterminate={allowIntermediate && !confirmed}
                       />
                       <span slot="label">
-                        I am certain about the true identity of the
-                        issuer of this currency.
+                        Сигурен/сигурна съм в истинската самоличност
+                        на издателя на тази валута.
                       </span>
                   </FormField>
                 </Cell>
@@ -330,7 +332,7 @@
                   input$spellcheck="false"
                   bind:invalid={invalidDebtorName}
                   bind:value={debtorName}
-                  label="Currency name"
+                  label="Име на валутата"
                   >
                   <svelte:fragment slot="trailingIcon">
                     {#if invalidDebtorName || !uniqueDebtorName}
@@ -338,7 +340,7 @@
                     {/if}
                   </svelte:fragment>
                   <HelperText slot="helper" persistent>
-                    Every account must have a unique currency name.
+                    Всяка сметка трябва да има уникално име на валута.
                   </HelperText>
                 </Textfield>
               </Cell>
@@ -354,7 +356,7 @@
                   withTrailingIcon={invalidNegligibleUnitAmount}
                   bind:value={negligibleUnitAmount}
                   bind:invalid={invalidNegligibleUnitAmount}
-                  label="Negligible amount"
+                  label="Незначителна сума"
                   suffix="{data.unit.slice(0, 10)}"
                   >
                   <svelte:fragment slot="trailingIcon">
@@ -363,13 +365,14 @@
                     {/if}
                   </svelte:fragment>
                   <HelperText style="word-break: break-word" slot="helper" persistent>
-                    An amount that you consider to be negligible or unimportant. It
-                    must be equal or bigger than {negligibleUnitAmountStep}
-                    {data.unit}. {appConfig.siteTitle} will use this
-                    amount when deciding whether the account can be safely
-                    deleted, and whether an incoming transfer should
-                    be ignored. If you are unsure, leave the default value
-                    unchanged.
+                    Сума, която считате за незначителна или маловажна.
+                    Тя трябва да бъде равна или по-голяма от
+                    {negligibleUnitAmountStep} {data.unit}.
+                    {appConfig.siteTitle} ще използва тази сума, за да
+                    прецени дали сметката може да бъде закрита и дали
+                    дадено входящо плащане може да бъде пренебрегнато.
+                    Ако не сте сигурни, оставете стойността по
+                    подразбиране непроменена.
                   </HelperText>
                 </Textfield>
               </Cell>
@@ -381,12 +384,12 @@
       <svelte:fragment slot="floating">
         <div class="fab-container">
           <Fab on:click={cancel} extended>
-            <Label>Cancel</Label>
+            <Label>Отмени</Label>
           </Fab>
         </div>
         <div class="fab-container">
           <Fab color="primary" on:click={confirm} extended>
-            <Label>{isCreateAccountAction ? 'Confirm' : 'Create'}</Label>
+            <Label>{isCreateAccountAction ? 'Потвърди' : 'Потвърди'}</Label>
           </Fab>
         </div>
       </svelte:fragment>
