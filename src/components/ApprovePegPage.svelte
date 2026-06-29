@@ -164,7 +164,7 @@
 </style>
 
 <div class="shaking-container">
-  <Page title="Фиксиран курс" hideFloating={openEnterPinDialog}>
+  <Page title="Одобри курс" hideFloating={openEnterPinDialog}>
     <svelte:fragment slot="content">
       <EnterPinDialog bind:open={openEnterPinDialog} performAction={submit} />
 
