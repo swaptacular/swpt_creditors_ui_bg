@@ -112,7 +112,7 @@
 </style>
 
 <div class="shaking-container">
-  <Page title="Нов начин на показване" hideFloating={openEnterPinDialog}>
+  <Page title="Начин на показване" hideFloating={openEnterPinDialog}>
     <svelte:fragment slot="content">
       <EnterPinDialog bind:open={openEnterPinDialog} performAction={submit} />
 

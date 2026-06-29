@@ -32,7 +32,7 @@
     case 'ApproveAmountDisplay':
       return 'Одобри начин на показване'
     case 'ApproveDebtorName':
-      return 'Одобри име'
+      return 'Одобри име на валута'
     case 'ConfigAccount':
       return 'Управление на сметка'
     case 'UpdatePolicy':

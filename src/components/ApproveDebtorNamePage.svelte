@@ -129,7 +129,7 @@
 </style>
 
 <div class="shaking-container">
-  <Page title="Ново на име" hideFloating={openEnterPinDialog}>
+  <Page title="Име на валута" hideFloating={openEnterPinDialog}>
     <svelte:fragment slot="content">
       <EnterPinDialog bind:open={openEnterPinDialog} performAction={submit} />
 
@@ -169,9 +169,9 @@
                 <FormField>
                   <Checkbox bind:checked={unsetKnownDebtor} on:click={() => unsetKnownDebtor || setDebtorName(newName)} />
                   <span slot="label">
-                    Тази промяна е объркваща. Вече не съм сигурен в
-                    истинската самоличност на издателя на тази валута
-                    и не желая повече да получавам плащания в нея.
+                    Тази промяна е объркваща. Вече не знам кой е
+                    истинският издател на тази валута и не желая
+                    повече да получавам плащания в нея.
                   </span>
                 </FormField>
               </Cell>
