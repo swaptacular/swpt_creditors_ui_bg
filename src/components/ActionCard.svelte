@@ -20,7 +20,7 @@
   function getButtonLabel(action: ActionRecordWithId): string {
     switch (action.actionType) {
     case 'CreateTransfer':
-      return 'Направи плащане'
+      return 'Плати'
     case 'AbortTransfer':
       return action.transfer.result ? "Покажи неуспешното плащане" : "Покажи забавеното плащане"
     case 'CreateAccount':
@@ -28,11 +28,11 @@
     case "AckAccountInfo":
       return 'Покажи промените'
     case 'ApprovePeg':
-      return 'Одобри фиксирания курс'
+      return 'Одобри фиксиран курс'
     case 'ApproveAmountDisplay':
-      return 'Одобри начина на показване'
+      return 'Одобри начин на показване'
     case 'ApproveDebtorName':
-      return 'Одобри името'
+      return 'Одобри име'
     case 'ConfigAccount':
       return 'Управление на сметка'
     case 'UpdatePolicy':
