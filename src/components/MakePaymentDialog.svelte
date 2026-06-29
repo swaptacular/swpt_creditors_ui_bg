@@ -73,7 +73,7 @@
     aria-describedby="payment-dialog-content"
     on:MDCDialog:closed={close}
     >
-    <Title id="payment-dialog-title">Scan the QR code of the payment request</Title>
+    <Title id="payment-dialog-title">Сканирайте QR кода на поканата за плащане</Title>
     <Content id="payment-dialog-content">
       <QrScanner bind:hasFlash bind:result={scannedValue} {flashlightOn} />
     </Content>
@@ -93,10 +93,10 @@
         </div>
         <div>
           <Button on:click={chooseFile}>
-            <Label>Load from file</Label>
+            <Label>Зареди от файл</Label>
           </Button>
           <Button default use={[InitialFocus]}>
-            <Label>Close</Label>
+            <Label>Затвори</Label>
           </Button>
         </div>
       </div>

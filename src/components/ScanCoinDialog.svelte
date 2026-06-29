@@ -56,7 +56,7 @@
     aria-describedby="scan-coin-dialog-content"
     on:MDCDialog:closed={close}
     >
-    <Title id="scan-coin-dialog-title">Scan the digital coin (a QR code)</Title>
+    <Title id="scan-coin-dialog-title">Сканирайте дигиталната монета (QR код)</Title>
     <Content id="scan-coin-dialog-content">
       <QrScanner bind:hasFlash bind:result={scannedValue} {flashlightOn} />
     </Content>
@@ -77,11 +77,11 @@
         <div>
           {#if appConfig.findIssuersUrl}
             <Button on:click={findIssuers}>
-              <Label>Find issuers</Label>
+              <Label>Издатели</Label>
             </Button>
           {/if}
           <Button default use={[InitialFocus]}>
-            <Label>Close</Label>
+            <Label>Затвори</Label>
           </Button>
         </div>
       </div>

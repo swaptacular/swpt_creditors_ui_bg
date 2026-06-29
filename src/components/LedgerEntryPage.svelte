@@ -92,26 +92,26 @@
   }
 </style>
 
-<Page title="Payment">
+<Page title="Превод">
   <svelte:fragment slot="content">
     <LayoutGrid>
       <Cell spanDevices={{ desktop: 12, tablet: 8, phone: 4 }}>
         <Paper style="margin-top: 12px; margin-bottom: 24px; word-break: break-word" elevation={6}>
           <Title>
-            Payment via "{debtorName}"
+            Превод през "{debtorName}"
           </Title>
           <Content>
             <h5>{getDate(transfer)}</h5>
             <p class="transfer">
               <span>{displayAmount}</span>
               {#if rationale === 'interest'}
-                interest payment
+                плащане на лихва
               {:else if rationale === 'agent'}
-                automatic exchange
+                автоматична обмяна
               {:else if amount < 0 && payeeName}
-                paid to "{payeeName}"
+                платени на "{payeeName}"
               {:else if amount > 0 && committedTransfer && committedTransfer.noteFormat !== '.' && payeeReference}
-                toward "{payeeReference.slice(0, 36)}"
+                за "{payeeReference.slice(0, 36)}"
               {/if}
             </p>
               {#if contentFormat === '.' || contentFormat === '-'}

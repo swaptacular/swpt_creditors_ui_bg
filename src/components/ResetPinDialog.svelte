@@ -54,8 +54,8 @@
   $: open = !$successfulPinReset && !$pinRequired
   $: if ($successfulPinReset && $resetPinMode) {
     close()
-    alert('Using your wallet in PIN-reset mode is not safe. You will be ' +
-          'logged out. To use the application again, you will have to log in.')
+    alert('Използването на портфейла в режим на промяна на ПИН не е безопасно. Ще бъдете ' +
+          'автоматично отписани. За да използвате приложението, ще трябва да влезете отново.')
     app.logout()
   }
 </script>
@@ -108,17 +108,18 @@
       aria-labelledby="set-pin-dialog-title"
       aria-describedby="set-pin-dialog-content"
       >
-      <Title id="set-pin-dialog-title">Choose a PIN</Title>
+      <Title id="set-pin-dialog-title">Изберете ПИН</Title>
       <Content id="set-pin-dialog-content">
         <form noValidate autoComplete="off">
           <p>
-            To improve the security of your wallet, you must choose a
-            personal identification number (PIN). It will be required
-            when performing potentially dangerous operations.
+            За да подобрим сигурността на портфейла ви, трябва да
+            изберете ПИН (персонален идентификационен номер). Той ще
+            бъде необходим за извършване на потенциално рискови
+            операции.
           </p>
 
           <p>
-            <strong>Do not give your PIN to anyone!</strong>
+            <strong>Не споделяйте своя ПИН с никого!</strong>
           </p>
 
           <p bind:this={shakingElement}>
@@ -134,7 +135,7 @@
               bind:invalid={invalidPin}
               bind:value={newPin}
               on:keypress={ignoreNonNumberKeys}
-              label="Your PIN"
+              label="Вашият ПИН"
               >
               <svelte:fragment slot="trailingIcon">
                 {#if invalidPin}
@@ -142,18 +143,18 @@
                 {/if}
               </svelte:fragment>
               <HelperText slot="helper" persistent>
-                Must contain at least 4, and at most 10 digits.
+                Трябва да съдържа поне 4 и най-много 10 цифри.
               </HelperText>
             </Textfield>
           </p>
 
           <p class="submit">
             <Button on:click={submit} type="submit" variant="raised">
-              <Label>Save</Label>
+              <Label>Запази</Label>
             </Button>
             <!-- The type="button" is necessary to prevent form submitting.-->
             <Button type="button" on:click={() => app.logout()}>
-              <Label>Log out</Label>
+              <Label>Изход</Label>
             </Button>
           </p>
         </form>

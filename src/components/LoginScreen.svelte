@@ -22,14 +22,14 @@
 <div class="paper-container">
   <div class="paper-height-limiter">
     <Paper style="margin: 36px 18px; max-width: 600px" elevation={8}>
-      <Title>Welcome to {appConfig.siteTitle}!</Title>
+      <Title>Добре дошли в {appConfig.siteTitle}!</Title>
       <Content>
-        {appConfig.siteTitle} lets you hold, use, buy, and sell
-        digital currencies, including currencies that you create
-        yourself. Currency issuers are known as <em>debtors</em>,
-        while currency holders are known as <em>creditors</em>. This
-        app connects you to our server, which sets up and manages your
-        digital wallet.
+        {appConfig.siteTitle} ви позволява да притежавате, използвате,
+        купувате и продавате дигитални валути, включително валути,
+        които създавате сами. Издателите на валути се
+        наричат <em>длъжници</em>, а притежателите на валути се
+        наричат <em>кредитори</em>. Това приложение ви свързва с нашия
+        сървър, който ще създаде и управлява вашия дигитален портфейл.
       </Content>
     </Paper>
   </div>
@@ -43,7 +43,7 @@
   <div class="button-container">
     <Group variant="raised">
       <Button on:click={() => action(resetPin)} variant="raised">
-        <Label>{resetPin ? "Reset PIN" : "Login"}</Label>
+        <Label>{resetPin ? "Промяна на ПИН" : "Вход"}</Label>
       </Button>
       <div use:GroupItem>
         <Button
@@ -56,10 +56,10 @@
         <Menu bind:this={menu} anchorCorner="TOP_LEFT">
           <List>
             <Item on:SMUI:action={() => action(false)}>
-              <Text>Login</Text>
+              <Text>Вход</Text>
             </Item>
             <Item on:SMUI:action={() => action(true)}>
-              <Text>Reset&nbsp;PIN</Text>
+              <Text>Промяна на&nbsp;ПИН</Text>
             </Item>
           </List>
         </Menu>

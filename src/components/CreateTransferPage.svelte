@@ -77,23 +77,22 @@
   function getInfoTooltip(status: CreateTransferActionStatus): string {
     switch (status) {
     case 'Draft':
-      return 'No attempts to transfer the amount have been made yet.'
+      return 'Все още не е направен опит за превеждане на сумата.'
     case 'Not sent':
-      return 'An attempt has been made to transfer the amount, '
-        + 'but it has been unsuccessful. '
-        + 'It is safe to retry the transfer, though.'
+      return 'Направен е опит за превеждане на сумата, но е неуспешен.'
+        + ' Безопасно е да опитате отново да извършите превода.'
     case 'Not confirmed':
-      return 'An attempt has been made to transfer the amount, '
-        + 'but it is unknown whether the amount has been successfully transferred or not. '
-        + 'It is safe to retry the transfer, though.'
+      return 'Направен е опит за превеждане на сумата, но не е'
+        + ' известно дали тя е била успешно преведена.'
+        + ' Безопасно е да опитате отново да извършите превода.'
     case 'Initiated':
-      return 'The payment has been initiated successfully.'
+      return 'Плащането е започнато.'
     case 'Failed':
       return INVALID_PAYMENT_REQUEST
     case 'Timed out':
-      return 'An attempt has been made to transfer the amount, '
-        + 'but it is unknown whether the amount has been successfully transferred or not. '
-        + 'It is not safe to retry the transfer.'
+      return 'Направен е опит за превеждане на сумата, но не е известно'
+        + ' дали тя е била успешно преведена. Не е безопасно да'
+        + ' опитате отново да извършите превода.'
     }
   }
 
@@ -193,7 +192,7 @@
   $: unit = display?.unit ?? '\u00a4'
   $: status = getCreateTransferActionStatus(action)
   $: isDraft = status === 'Draft'
-  $: executeButtonLabel = (status !== 'Initiated' && status !== 'Timed out' && status !== 'Failed') ? "Send" : 'Acknowledge'
+  $: executeButtonLabel = (status !== 'Initiated' && status !== 'Timed out' && status !== 'Failed') ? "Плати" : "Разбрах"
   $: executeButtonIsHidden = (status === 'Failed')
   $: dismissButtonIsHidden = (status === 'Not confirmed' || status === 'Initiated' || status === 'Timed out')
   $: statusTooltip = getInfoTooltip(status)
@@ -207,7 +206,7 @@
 </style>
 
 <div class="shaking-container">
-  <Page title="Make payment" hideFloating={openEnterPinDialog}>
+  <Page title="Плати" hideFloating={openEnterPinDialog}>
     <svelte:fragment slot="content">
       <EnterPinDialog bind:open={openEnterPinDialog} performAction={submit} />
 
@@ -239,19 +238,19 @@
           aria-describedby="confirm-change-amount-dialog-content"
           on:MDCDialog:closed={() => showConfirmDialog = false}
           >
-          <DialogTitle id="confirm-change-amount-dialog-title">Changed amount</DialogTitle>
+          <DialogTitle id="confirm-change-amount-dialog-title">Променена сума</DialogTitle>
           <DialogContent id="confirm-change-amount-dialog-content">
-            The amount that you are about to send ({unitAmount}
-            {unit}), is not the same as the amount stated in the
-            payment request ({requestedUnitAmount} {unit}). Are you
-            sure you want to make this payment?
+            Сумата, която възнамерявате да платите ({unitAmount}
+            {unit}), не съвпада със сумата, посочена в поканата за
+            плащане ({requestedUnitAmount} {unit}). Сигурни ли сте, че
+            желаете да извършите това плащане?
           </DialogContent>
           <Actions>
             <Button on:click={resetAmount}>
-              <ButtonLabel>No</ButtonLabel>
+              <ButtonLabel>Не</ButtonLabel>
             </Button>
             <Button default use={[InitialFocus]} on:click={() => openEnterPinDialog = true}>
-              <ButtonLabel>Yes</ButtonLabel>
+              <ButtonLabel>Да</ButtonLabel>
             </Button>
           </Actions>
         </Dialog>
@@ -262,7 +261,7 @@
       {#if !dismissButtonIsHidden}
         <div class="fab-container">
           <Fab color={executeButtonIsHidden ? "primary" : "secondary"} on:click={dismiss} extended>
-            <Label>Dismiss</Label>
+            <Label>Откажи</Label>
           </Fab>
         </div>
       {/if}

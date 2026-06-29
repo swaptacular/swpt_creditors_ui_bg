@@ -143,8 +143,8 @@
       shakeForm()
     } else if (requestedAmount && requestedAmount < 3 * Math.max(negligibleAmount, 1)) {
       app.addAlert(new Alert(
-        'The requested amount is too small. It should be at least three '
-        + 'times bigger than the negligible amount for this account '
+        'Заявената сума е твърде малка. Тя трябва да бъде поне три '
+        + 'пъти по-голяма от „незначителната сума“, определена за тази сметка '
         + `(${negligibleUnitAmount} ${unit}).`
       ))
     } else {
@@ -203,7 +203,7 @@
 </style>
 
 <div class="shaking-container">
-  <Page title="Request payment" scrollTop={model.scrollTop} scrollLeft={model.scrollLeft}>
+  <Page title="Покана за плащане" scrollTop={model.scrollTop} scrollLeft={model.scrollLeft}>
     <svelte:fragment slot="content">
       <div bind:this={shakingElement}>
         <form
@@ -220,16 +220,16 @@
                   <Chip chip="account" style="float: right; margin-left: 6px">
                     <Text>
                       <a href="." style="text-decoration: none; color: #666" on:click|preventDefault={showAccount}>
-                        account
+                        сметка
                       </a>
                     </Text>
                   </Chip>
-                  Payment via "{debtorName}"
+                  Плащане през "{debtorName}"
                 </Title>
                 <Content style="clear: both">
-                  To receive a payment, you should fill out a payment
-                  request, and then show the generated QR code to the
-                  payer.
+                  За да получите плащане, трябва да попълните покана
+                  за плащане и след това да покажете създадения от
+                  приложението QR код на платеца.
                 </Content>
               </Paper>
             </Cell>
@@ -245,7 +245,7 @@
                 withTrailingIcon={invalidUnitAmount}
                 bind:value={unitAmount}
                 bind:invalid={invalidUnitAmount}
-                label="Amount"
+                label="Сума"
                 suffix="{amountSuffix}"
                 >
                 <svelte:fragment slot="trailingIcon">
@@ -254,8 +254,8 @@
                   {/if}
                 </svelte:fragment>
                 <HelperText slot="helper" persistent>
-                  The amount to be paid. You may enter "0" here, to
-                  create a generic payment request.
+                  Сумата за плащане. Можете да въведете „0“, за да
+                  създадете универсална покана за плащане.
                 </HelperText>
               </Textfield>
             </Cell>
@@ -269,7 +269,7 @@
                 input$spellcheck="false"
                 bind:invalid={invalidPayeeName}
                 bind:value={payeeName}
-                label="Payee name"
+                label="Име на получателя"
                 >
                 <svelte:fragment slot="trailingIcon">
                   {#if invalidPayeeName}
@@ -277,8 +277,8 @@
                   {/if}
                 </svelte:fragment>
                 <HelperText slot="helper" persistent>
-                  The name of the payment recipient. This will usually
-                  be your name.
+                  Името на получателя на плащането. Това обикновено ще
+                  бъде вашето име.
                 </HelperText>
               </Textfield>
             </Cell>
@@ -290,7 +290,7 @@
                 type="datetime-local"
                 bind:invalid={invalidDeadline}
                 bind:value={deadline}
-                label="Deadline"
+                label="Краен срок за плащане"
                 >
                 <svelte:fragment slot="trailingIcon">
                   {#if invalidDeadline}
@@ -298,8 +298,8 @@
                   {/if}
                 </svelte:fragment>
                 <HelperText slot="helper" persistent>
-                  The payment must be completed before that moment
-                  (optional).
+                  Плащането трябва да бъде извършено преди тази дата и
+                  час (по избор).
                 </HelperText>
               </Textfield>
             </Cell>
@@ -312,16 +312,16 @@
                 style="width: 100%"
                 bind:invalid={invalidNote}
                 bind:value={note}
-                label="Payment reason"
+                label="Описание на плащането"
                 >
                 <div class="mdc-text-field-character-counter" slot="internalCounter">
-                  {noteBytes} / {noteBytesLimit} bytes
+                  {noteBytes} / {noteBytesLimit} байта
                 </div>
                 <HelperText slot="helper" persistent>
-                  This field can contain any information you want the
-                  payer to see before making the payment. Typically,
-                  it should describe the reason for the payment
-                  (optional).
+                  Това поле може да съдържа всякаква информация, която
+                  желаете платецът да види преди извършване на
+                  плащането. Обикновено то съдържа основанието за
+                  плащането (по избор).
                 </HelperText>
               </Textfield>
             </Cell>
@@ -333,12 +333,12 @@
     <svelte:fragment slot="floating">
       <div class="fab-container">
         <Fab on:click={cancel} extended>
-          <Label>Cancel</Label>
+          <Label>Отмени</Label>
         </Fab>
       </div>
       <div class="fab-container">
         <Fab color="primary" on:click={request} extended>
-          <Label>Request</Label>
+          <Label>Покана</Label>
         </Fab>
       </div>
     </svelte:fragment>

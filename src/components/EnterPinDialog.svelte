@@ -103,11 +103,11 @@
         aria-describedby="enter-pin-dialog-content"
         on:MDCDialog:closed={close}
         >
-        <Title id="enter-pin-dialog-title">Enter your PIN</Title>
+        <Title id="enter-pin-dialog-title">Въведете своя ПИН</Title>
         <Content id="enter-pin-dialog-content">
           <p class="pin-explain">
-            To guarantee the security of your wallet, you must enter
-            your personal identification number.
+            За да гарантираме сигурността на портфейла ви, трябва да
+            въведете своя ПИН (персонален идентификационен номер).
           </p>
           <p class="pin-hide">
             <Textfield
@@ -121,7 +121,7 @@
               on:keypress={ignoreNonNumberKeys}
               on:focus={onPinInputFocus}
               on:blur={onPinInputBlur}
-              label="Your PIN"
+              label="Вашият ПИН"
               >
             </Textfield>
           </p>
@@ -135,7 +135,7 @@
         </Content>
         <Actions>
           <Button type="button">
-            <Label>Cancel</Label>
+            <Label>Откажи</Label>
           </Button>
           <Button type="submit" default on:click={submit}>
             <Label>OK</Label>
