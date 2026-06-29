@@ -79,9 +79,9 @@
   $: status = getStatus($transfer)
   $: statusTooltip = getTransferStatusDetails($transfer)
   $: dataUrl = generateDataUrl($transfer)
-  $: payeeName = paymentInfo.payeeName.slice(0, 40) ?? 'unknown payee'
+  $: payeeName = paymentInfo.payeeName.slice(0, 40) ?? 'неизвестен получател'
   $: payeeReference = paymentInfo.payeeReference
-  $: downloadNameShort = `Pay ${unitAmount} ${unit.slice(0, 10)} to ${payeeName}`
+  $: downloadNameShort = `Плати ${unitAmount} ${unit.slice(0, 10)} на ${payeeName}`
   $: downloadName = payeeReference ? `${downloadNameShort} - ${payeeReference}` : downloadNameShort
   $: fileName = downloadName.slice(0, 120).replace(/[<>:"/|?*\\]/g, ' ') + '.pr0'
 
@@ -101,7 +101,7 @@
   }
 </style>
 
-<Page title="Payment">
+<Page title="Плащане">
   <svelte:fragment slot="content">
     <PaymentInfo
       {unitAmount}
@@ -116,7 +116,7 @@
 
   <svelte:fragment slot="floating">
     <div class="fab-container">
-      <a class="download-link" href={dataUrl} download={fileName} bind:this={downloadLinkElement}>download</a>
+      <a class="download-link" href={dataUrl} download={fileName} bind:this={downloadLinkElement}>изтегли</a>
       <Fab on:click={() => downloadLinkElement.click()}>
         <Icon class="material-icons">download</Icon>
       </Fab>

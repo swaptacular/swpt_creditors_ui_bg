@@ -212,7 +212,7 @@
         variant="outlined"
         style="width: 100%"
         type="datetime-local"
-        label="Срок за плащане"
+        label="Краен срок за плащане"
         required
         input$readonly
         bind:invalid={invalidDeadline}
@@ -279,7 +279,7 @@
         variant="outlined"
         style="width: 100%"
         type="datetime-local"
-        label="Срок за плащане"
+        label="Краен срок за плащане"
         withTrailingIcon={invalidDeadline}
         bind:invalid={invalidDeadline}
         bind:value={deadline}

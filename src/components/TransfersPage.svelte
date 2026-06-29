@@ -80,11 +80,11 @@
   }
 </style>
 
-<Page title="Payments" scrollTop={model.scrollTop} scrollLeft={model.scrollLeft}>
+<Page title="Плащания" scrollTop={model.scrollTop} scrollLeft={model.scrollLeft}>
   <svelte:fragment slot="content">
     {#if transfers.length === 0}
       <p class="no-payments">
-        You have not initiated any payments yet.
+        Все още не сте започнали никакви плащания.
       </p>
     {:else}
       <LayoutGrid>
@@ -102,7 +102,7 @@
                       {amountToString(transfer.amount, transfer.display?.amountDivisor ?? 1, transfer.display?.decimalPlaces ?? 0n)}
                       {transfer.display?.unit ?? '\u00a4'}
                     </span>
-                    to {transfer.paymentInfo.payeeName || 'unknown payee'}
+                    на {transfer.paymentInfo.payeeName || 'неизвестен получател'}
                   </p>
                 </Content>
               </PrimaryAction>

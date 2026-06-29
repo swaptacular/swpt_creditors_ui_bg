@@ -215,7 +215,7 @@
 </style>
 
 <div class="shaking-container">
-  <Page title="Modify policy" hideFloating={openEnterPinDialog}>
+  <Page title="Промяна на правила" hideFloating={openEnterPinDialog}>
     <svelte:fragment slot="content">
       <EnterPinDialog bind:open={openEnterPinDialog} performAction={submit} />
 
@@ -237,9 +237,9 @@
                 >
                 <svelte:fragment slot="title">
                   {#if knownDebtor}
-                    Exchange policy for "{debtorName}"
+                    Правила за автоматична обмяна с "{debtorName}"
                   {:else}
-                    Exchange policy for "{debtorName}" (unconfirmed account)
+                    Правила за автоматична обмяна с "{debtorName}" (непотвърдена сметка)
                   {/if}
                 </svelte:fragment>
               </AccountInfo>
@@ -250,7 +250,7 @@
                 <FormField style="margin-bottom: 12px">
                   <Checkbox bind:checked={useNonstandardPeg} />
                   <span slot="label">
-                    Use a nonstandard currency peg.
+                    Използвай нестандартен фиксиран курс на обмен.
                   </span>
                 </FormField>
               </Cell>
@@ -261,7 +261,7 @@
                 <FormField style="margin-bottom: 12px">
                   <Checkbox bind:checked={ignoreDeclaredPeg} />
                   <span slot="label">
-                    Ignore the currency peg declared by the issuer.
+                    Не използвай фиксирания курс на обмен, обявен от издателя.
                   </span>
                 </FormField>
               </Cell>
@@ -272,7 +272,7 @@
                 <FormField style="margin-bottom: 12px">
                   <Checkbox bind:checked={reviseApprovedPeg} />
                   <span slot="label">
-                    Revise the already approved currency peg.
+                    Преразгледай одобрения фиксиран курс на обмен.
                   </span>
                 </FormField>
               </Cell>
@@ -287,7 +287,7 @@
                     touch
                     />
                   <span slot="label">
-                    Do not allow automatic exchanges.
+                    Не разрешавай автоматична обмяна.
                   </span>
                 </FormField>
                 <FormField>
@@ -298,9 +298,9 @@
                     touch
                     />
                   <span slot="label">
-                    Allow automatic buying and selling of this
-                    currency to keep the available amount within the
-                    defined limits, if possible.
+                    Разреши автоматично купуване и продаване на тази
+                    валута, когато е възможно, за да се поддържа
+                    наличната сума в зададените граници.
                   </span>
                 </FormField>
               </div>
@@ -315,31 +315,30 @@
                     {#if pegStatus === 'UsesNoPeg' }
                       <Cell spanDevices={{ desktop: 12, tablet: 8, phone: 4 }}>
                         <p class="warning">
-                          <strong>Important note:</strong> Automatic
-                          exchanges are not available for this
-                          currency because the issuer has not declared
-                          a currency peg.
+                          <strong>Важно:</strong> Автоматичната обмяна
+                          не е възможна за тази валута, защото
+                          издателят не е обявил фиксиран курс на
+                          обмен.
                         </p>
                       </Cell>
                     {/if}
                     {#if pegStatus === 'UsesNonstandardPeg' }
                       <Cell spanDevices={{ desktop: 12, tablet: 8, phone: 4 }}>
                         <p class="warning">
-                          <strong>Important note:</strong> Automatic
-                          exchanges might not be available for this
-                          currency because you have approved a
-                          currency peg that differs from the peg
-                          declared by the issuer.
+                          <strong>Важно:</strong> Автоматичната обмяна
+                          може да не е възможна за тази валута, защото
+                          сте одобрили фиксиран курс на обмен, който
+                          се различава от обявения от издателя.
                         </p>
                       </Cell>
                     {/if}
                     {#if pegStatus === 'IgnoresDeclaredPeg' }
                       <Cell spanDevices={{ desktop: 12, tablet: 8, phone: 4 }}>
                         <p class="warning">
-                          <strong>Important note:</strong> Automatic
-                          exchanges are not available for this
-                          currency because you have not approved the
-                          currency peg declared by its issuer.
+                          <strong>Важно:</strong> Автоматичната обмяна
+                          не е възможна за тази валута, защото не сте
+                          одобрили обявения от издателя фиксиран курс
+                          на обмен.
                         </p>
                       </Cell>
                     {/if}
@@ -355,7 +354,7 @@
                       withTrailingIcon={invalidMinPrincipalUnitAmount}
                       bind:value={minPrincipalUnitAmount}
                       bind:invalid={invalidMinPrincipalUnitAmount}
-                      label="Minumum amount"
+                      label="Минимална сума"
                       suffix="{amountSuffix}"
                       >
                       <svelte:fragment slot="trailingIcon">
@@ -364,10 +363,10 @@
                         {/if}
                       </svelte:fragment>
                       <HelperText slot="helper" persistent>
-                        The available amount should not fall below
-                        this value. This limit applies only to
-                        automatic exchanges and will be enforced on a
-                        "best effort" basis.
+                        Наличната сума не трябва да пада под тази
+                        стойност. Тази граница се прилага само при
+                        автоматична обмяна и ще бъде спазвана само
+                        доколкото е възможно.
                       </HelperText>
                     </Textfield>
                   </Cell>
@@ -383,7 +382,7 @@
                       withTrailingIcon={erroneousMaxPrincipleUnitAmount}
                       bind:value={maxPrincipalUnitAmount}
                       bind:invalid={invalidMaxPrincipalUnitAmount}
-                      label="Maximum amount"
+                      label="Максимална сума"
                       suffix="{amountSuffix}"
                       >
                       <svelte:fragment slot="trailingIcon">
@@ -392,11 +391,12 @@
                         {/if}
                       </svelte:fragment>
                       <HelperText slot="helper" persistent>
-                        The available amount should not exceed this
-                        value. This limit applies only to automatic
-                        exchanges and will be enforced on a "best
-                        effort" basis. The value must be greater than
-                        or equal to the "Minimum amount" value.
+                        Наличната сума не трябва да надвишава тази
+                        стойност. Тази граница се прилага само при
+                        автоматична обмяна и ще бъде спазвана само
+                        доколкото е възможно. Стойността трябва да
+                        бъде по-голяма или равна на стойността в
+                        полето „Минимална сума“.
                       </HelperText>
                     </Textfield>
                   </Cell>
@@ -411,12 +411,12 @@
     <svelte:fragment slot="floating">
       <div class="fab-container">
         <Fab on:click={cancel} extended>
-          <Label>Cancel</Label>
+          <Label>Отмени</Label>
         </Fab>
       </div>
       <div class="fab-container">
         <Fab color="primary" on:click={modify} extended>
-          <Label>Modify</Label>
+          <Label>Запиши</Label>
         </Fab>
       </div>
     </svelte:fragment>

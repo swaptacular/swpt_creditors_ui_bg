@@ -111,7 +111,7 @@
   $: unit = display.unit ?? '\u00a4'
   $: amountSuffix = unit.slice(0, 10)
   $: payeeName = action.editedPayeeName
-  $: rawFileName = amount ? action.payeeReference : `Generic payment request - ${debtorName}`
+  $: rawFileName = amount ? action.payeeReference : `Универсална покана за плащане - ${debtorName}`
   $: fileName = rawFileName.replace(/[<>:"/|?*\\]/g, ' ')
   $: imageFileName = `${fileName}.png`
   $: textFileName = `${fileName}.pr0`
@@ -205,7 +205,7 @@
 </style>
 
 <div>
-  <Page title="Payment request" scrollTop={model.scrollTop} scrollLeft={model.scrollLeft}>
+  <Page title="Покана за плащане" scrollTop={model.scrollTop} scrollLeft={model.scrollLeft}>
     <svelte:fragment slot="app-bar">
       <Row style="height: 72px">
         <div class="received-box">
@@ -213,9 +213,9 @@
             <div class="received-text">
                 {#if baseAmount === 0n }
                   {#if amount === 0n}
-                    total{/if} received
+                    общо{/if} получени
                 {:else}
-                  last received
+                  последно получени
                 {/if}
             </div>
             <div class="received-amount">
@@ -240,10 +240,10 @@
           <QrGenerator value={model.paymentRequest} bind:dataUrl={imageDataUrl} />
         </div>
         <a class="download-link" href={imageDataUrl} download={imageFileName} bind:this={downloadImageElement}>
-          download
+          изтегли
         </a>
         <a class="download-link" href={textDataUrl} download={textFileName} bind:this={downloadTextElement}>
-          download
+          изтегли
         </a>
         <div class="text-container">
           <Paper elevation={8} style="margin: 0 16px 24px 16px; max-width: 600px; word-break: break-word">
@@ -251,27 +251,27 @@
               <Chip chip="account" style="float: right; margin-left: 6px">
                 <Text>
                   <a href="." style="text-decoration: none; color: #666" on:click|preventDefault={showAccount}>
-                    account
+                    сметка
                   </a>
                 </Text>
               </Chip>
-              Payment via "{debtorName}"
+              Плащане през "{debtorName}"
             </Title>
             <Content>
               <a href="qr" target="_blank" rel="noreferrer" on:click|preventDefault={() => downloadImageElement?.click()}>
-                The QR code above
+                QR кодът по-горе
               </a>
               {#if amount === 0n}
-                represents a generic payment request from "{payeeName}".
+                съдържа универсална покана за плащане с получател "{payeeName}".
               {:else}
-                represents a request {unitAmount} {unit} to be paid to "{payeeName}".
+                съдържа покана за плащане на {unitAmount} {unit} с получател "{payeeName}".
               {/if}
 
-              This payment request has been created at
+              Тази покана за плащане е създадена на
               {sealedAt?.toLocaleString('bg-BG')}.
 
               {#if deadline.getTime()}
-                The deadline for the payment is {deadline.toLocaleString('bg-BG')}.
+                Крайният срок за плащане е {deadline.toLocaleString('bg-BG')}.
               {/if}
 
               {#if action.editedNote}
@@ -279,9 +279,9 @@
               {/if}
 
               <p class="important">
-                Show the QR code to the payer, or download and send a
-                file. Once the corresponding payment has been
-                received, you may discard this payment request.
+                Покажете QR кода на платеца или го изтеглете и
+                изпратете като файл. След като плащането бъде
+                получено, можете да премахнете тази покана за плащане.
               </p>
             </Content>
           </Paper>
@@ -299,19 +299,19 @@
           <DialogTitle id="confirm-delete-dialog-title">Discard this payment request</DialogTitle>
           <DialogContent id="confirm-delete-dialog-content">
             {#if done}
-              Are you sure you want to do this?
+              Сигурни ли сте, че искате да направите това?
             {:else}
-              If you discard this payment request, you may fail to
-              notice the corresponding payment. Are you sure you want
-              to do this?
+              Ако премахнете тази покана за плащане, може да получите
+              плащането, но да не го забележите. Сигурни ли сте, че
+              искате да направите това?
             {/if}
           </DialogContent>
           <Actions>
             <Button>
-              <Label>No</Label>
+              <Label>Не</Label>
             </Button>
             <Button default use={[InitialFocus]} on:click={() => actionManager.remove()}>
-              <Label>Yes</Label>
+              <Label>Да</Label>
             </Button>
           </Actions>
         </Dialog>
@@ -321,12 +321,12 @@
     <svelte:fragment slot="floating">
       <div class="fab-container">
         <Fab on:click={() => downloadTextElement.click()} extended>
-          <FabLabel>Download</FabLabel>
+          <FabLabel>Изтегли</FabLabel>
         </Fab>
       </div>
       <div class="fab-container">
         <Fab color="primary" on:click={remove} extended>
-          <FabLabel>Discard</FabLabel>
+          <FabLabel>Премахни</FabLabel>
         </Fab>
       </div>
     </svelte:fragment>
