@@ -107,7 +107,7 @@
 </style>
 
 <div class="shaking-container">
-  <Page title="Разреши конфликт">
+  <Page title="Избери монета">
     <svelte:fragment slot="content">
       {#if showKnownCoinList}
         <Dialog
