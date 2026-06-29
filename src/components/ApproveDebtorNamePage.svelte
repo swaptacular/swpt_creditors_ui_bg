@@ -129,7 +129,7 @@
 </style>
 
 <div class="shaking-container">
-  <Page title="Одобряване на име" hideFloating={openEnterPinDialog}>
+  <Page title="Ново на име" hideFloating={openEnterPinDialog}>
     <svelte:fragment slot="content">
       <EnterPinDialog bind:open={openEnterPinDialog} performAction={submit} />
 
@@ -233,7 +233,7 @@
     <svelte:fragment slot="floating">
       <div class="fab-container">
         <Fab color="primary" on:click={confirm} extended>
-          <Label>Одобрявам</Label>
+          <Label>Потвърди</Label>
         </Fab>
       </div>
     </svelte:fragment>

@@ -164,7 +164,7 @@
 </style>
 
 <div class="shaking-container">
-  <Page title="Одобряване на фиксиран курс" hideFloating={openEnterPinDialog}>
+  <Page title="Нов фиксиран курс" hideFloating={openEnterPinDialog}>
     <svelte:fragment slot="content">
       <EnterPinDialog bind:open={openEnterPinDialog} performAction={submit} />
 
@@ -272,7 +272,7 @@
     <svelte:fragment slot="floating">
       <div class="fab-container">
         <Fab color="primary" on:click={confirm} extended>
-          <Label>Запомни това решение</Label>
+          <Label>Потвърди</Label>
         </Fab>
       </div>
     </svelte:fragment>

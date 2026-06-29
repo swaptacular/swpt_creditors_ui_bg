@@ -160,7 +160,7 @@
 </style>
 
 <div class="shaking-container">
-  <Page title="Промяна на настройките на сметка" hideFloating={openEnterPinDialog}>
+  <Page title="Управление на сметка" hideFloating={openEnterPinDialog}>
     <svelte:fragment slot="content">
       <EnterPinDialog bind:open={openEnterPinDialog} performAction={submit} />
 
@@ -291,7 +291,7 @@
       </div>
       <div class="fab-container">
         <Fab color="primary" on:click={modify} extended>
-          <Label>Промени</Label>
+          <Label>Запиши</Label>
         </Fab>
       </div>
     </svelte:fragment>

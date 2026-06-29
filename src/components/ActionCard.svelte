@@ -34,7 +34,7 @@
     case 'ApproveDebtorName':
       return 'Одобри името'
     case 'ConfigAccount':
-      return 'Промени настройките'
+      return 'Управлявай сметката'
     case 'UpdatePolicy':
       return 'Промени правилата'
     case 'PaymentRequest':
@@ -97,32 +97,32 @@
       case "AckAccountInfo": {
         const debtorName = getDebtorName(action.accountUri)
         const descripiton = debtorName
-          ? `Има някои промени във валутата "${debtorName}".`
-          : 'Има някои промени в една от валутите.'
+          ? `Има промени във валутата "${debtorName}".`
+          : 'Има промени в една от валутите.'
         return descripiton
       }
       case 'ApprovePeg': {
         const debtorName = getDebtorName(action.accountUri)
         const descripiton = debtorName
-          ? `Одобри фиксиран курс на обмен между "${debtorName}" и друга валута.`
-          : 'Одобри фиксиран курс на обмен между две валути.'
+          ? `Нов фиксиран курс на обмен между "${debtorName}" и друга валута.`
+          : 'Нов фиксиран курс на обмен между две валути.'
         return descripiton
       }
       case 'ApproveAmountDisplay': {
         const debtorName = getDebtorName(action.accountUri)
         return debtorName ?
-          `Одобри нов начин за показване на сумите във валутата "${debtorName}".` :
-          'Одобри нов начин за показване на суми.'
+          `Нов начин на показване на сумите във валутата "${debtorName}".` :
+          'Нов начин на показване на суми.'
       }
       case 'ApproveDebtorName': {
         const debtorName = getDebtorName(action.accountUri)
-        return debtorName ? `Одобри ново име за "${debtorName}".` : 'Одобри ново име.'
+        return debtorName ? `Ново име на валутата "${debtorName}".` : 'Ново име на валута.'
       }
       case 'ConfigAccount': {
         const debtorName = getDebtorName(action.accountUri)
         return debtorName
-          ? `Промени настройките на сметката ми към "${debtorName}".`
-          : 'Промени настройките на сметка.'
+          ? `Управлявай сметката ми към "${debtorName}".`
+          : 'Управлявай сметка.'
       }
       case 'UpdatePolicy': {
         const debtorName = getDebtorName(action.accountUri)
