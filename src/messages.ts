@@ -74,7 +74,9 @@ export const CAN_NOT_PERFORM_ACTOIN = "Заявеното действие не 
 export const ACTION_DOES_NOT_EXIST = "Заявеното действие не съществува."
 
 // Generates a message to be shown in a tooltip. Change this function
-// to return a translated string.
+// to return a translated string. Also, make sure to pass your locale
+// as a parameter in the calls to `toLocaleString()` that this
+// function makes (`.toLocaleString('bg-BG')` for example).
 export function getTransferStatusDetails(t: any): string {
   const initiatedAt = new Date(t.initiatedAt).toLocaleString('bg-BG')
   if (t.result) {
