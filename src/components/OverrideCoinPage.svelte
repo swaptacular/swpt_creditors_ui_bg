@@ -107,7 +107,7 @@
 </style>
 
 <div class="shaking-container">
-  <Page title="Resolve conflict">
+  <Page title="Разреши конфликт">
     <svelte:fragment slot="content">
       {#if showKnownCoinList}
         <Dialog
@@ -116,7 +116,7 @@
           aria-describedby="show-known-currencies-dialog-content"
           on:MDCDialog:closed={() => showKnownCoinList = false}
           >
-          <DialogTitle>Currencies using the already known coin:</DialogTitle>
+          <DialogTitle>Валути, използващи вече познатата дигитална монета:</DialogTitle>
           <DialogContent style="word-break: break-word">
             <ul class="currency-list">
               {#each knownCoinList as currencyName }
@@ -126,7 +126,7 @@
           </DialogContent>
           <Actions>
             <Button>
-              <ButtonLabel>Close</ButtonLabel>
+              <ButtonLabel>Затвори</ButtonLabel>
             </Button>
           </Actions>
         </Dialog>
@@ -139,7 +139,7 @@
           aria-describedby="show-new-currencies-dialog-content"
           on:MDCDialog:closed={() => showNewCoinList = false}
           >
-          <DialogTitle>Currencies suggesting the same coin as "{peggedDebtorName}":</DialogTitle>
+          <DialogTitle>Валути, които посочват същата дигитална монета като "{peggedDebtorName}":</DialogTitle>
           <DialogContent style="word-break: break-word">
             <ul class="currency-list">
               {#each newCoinList as currencyName }
@@ -149,7 +149,7 @@
           </DialogContent>
           <Actions>
             <Button>
-              <ButtonLabel>Close</ButtonLabel>
+              <ButtonLabel>Затвори</ButtonLabel>
             </Button>
           </Actions>
         </Dialog>
@@ -166,39 +166,39 @@
             <Cell spanDevices={{ desktop: 12, tablet: 8, phone: 4 }}>
               <Paper style="margin-top: 12px; margin-bottom: 24px; word-break: break-word" elevation={6}>
                 <Title>
-                  Digital coin conflict
+                  Конфликт между дигитални монети
                 </Title>
                 <Content>
                   <p>
                     "{peggedDebtorName}"
                     {#if !peggedKnownDebtor}
-                      (unconfirmed account)
+                      (непотвърдена сметка)
                     {/if}
-                    has declared a fixed exchange rate with
-                    "{pegDebtorName}". However, the digital coin
-                    declared for "{pegDebtorName}" does not match the
-                    already known coin for it.
+                    е обявил фиксиран курс на обмен с
+                    "{pegDebtorName}". Проблемът е, че дигиталната
+                    монета, обявена за "{pegDebtorName}", не съвпада с
+                    вече познатата монета, асоциирана с него.
                   </p>
                     <ul class="checklist">
                       <li>
                         {#if knownCoinList.length === 0}
-                          The already known coin is not used by any pegged currencies.
+                          Вече познатата монета не се използва от други обвързани валути.
                         {:else if knownCoinList.length === 1}
-                          <LinkPopup bind:show={showKnownCoinList}>1 pegged currency</LinkPopup>
-                          uses the already known coin.
+                          <LinkPopup bind:show={showKnownCoinList}>1 обвързана валута</LinkPopup>
+                          използва вече познатата монета.
                         {:else}
-                          <LinkPopup bind:show={showKnownCoinList}>{knownCoinList.length} pegged currencies</LinkPopup>
-                          use the already known coin.
+                          <LinkPopup bind:show={showKnownCoinList}>{knownCoinList.length} обвързани валути</LinkPopup>
+                          използват вече познатата монета.
                         {/if}
                       </li>
                       {#if newCoinList.length > 0}
                         <li>
                           {#if newCoinList.length === 1}
-                            <LinkPopup bind:show={showNewCoinList}>1 pegged currency</LinkPopup>
-                            suggests the same coin as "{peggedDebtorName}".
+                            <LinkPopup bind:show={showNewCoinList}>1 обвързана валута</LinkPopup>
+                            посочва същата монета като "{peggedDebtorName}".
                           {:else}
-                            <LinkPopup bind:show={showNewCoinList}>{newCoinList.length} pegged currencies</LinkPopup>
-                            suggest the same coin as "{peggedDebtorName}".
+                            <LinkPopup bind:show={showNewCoinList}>{newCoinList.length} обвързани валути</LinkPopup>
+                            посочват същата монета като "{peggedDebtorName}".
                           {/if}
                         </li>
                       {/if}
@@ -211,14 +211,14 @@
               <div class="radio-group" style="margin-top: -10px; word-break: break-word">
                 <FormField>
                   <Radio bind:group={replace} value="no" touch />
-                  <span slot="label">Use the already known coin.</span>
+                  <span slot="label">Използвай вече познатата монета.</span>
                 </FormField>
                 <FormField>
                   <Radio bind:group={replace} value="yes" touch />
                   <span slot="label">
-                    It seems like the known coin is obsolete or
-                    fake. Replace it with the coin that
-                    "{peggedDebtorName}" declares.
+                    Изглежда, че познатата монета е остаряла или
+                    невалидна. Замени я с монетата, която
+                    "{peggedDebtorName}" обявява.
                   </span>
                 </FormField>
               </div>
@@ -231,7 +231,7 @@
     <svelte:fragment slot="floating">
       <div class="fab-container">
         <Fab color="primary" on:click={submit} extended>
-          <Label>Resolve</Label>
+          <Label>Потвърди</Label>
         </Fab>
       </div>
     </svelte:fragment>

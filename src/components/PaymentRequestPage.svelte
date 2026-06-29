@@ -338,7 +338,7 @@
       </div>
       <div class="fab-container">
         <Fab color="primary" on:click={request} extended>
-          <Label>Покана</Label>
+          <Label>Продължи</Label>
         </Fab>
       </div>
     </svelte:fragment>
