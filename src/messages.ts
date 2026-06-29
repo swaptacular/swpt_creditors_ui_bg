@@ -76,9 +76,9 @@ export const ACTION_DOES_NOT_EXIST = "Заявеното действие не �
 // Generates a message to be shown in a tooltip. Change this function
 // to return a translated string.
 export function getTransferStatusDetails(t: any): string {
-  const initiatedAt = new Date(t.initiatedAt).toLocaleString()
+  const initiatedAt = new Date(t.initiatedAt).toLocaleString('bg-BG')
   if (t.result) {
-    const finalizedAt = new Date(t.result.finalizedAt).toLocaleString()
+    const finalizedAt = new Date(t.result.finalizedAt).toLocaleString('bg-BG')
     if (t.result.error) {
       const reason = getFailureReason(t.result.error.errorCode)
       return `Плащането е започнало на ${initiatedAt}`

@@ -46,7 +46,7 @@
 
   function getDate(t: ExtendedTransferRecord): string {
     const initiatedAt = new Date(t.initiatedAt)
-    return initiatedAt.toLocaleString()
+    return initiatedAt.toLocaleString('bg-BG')
   }
 
   $: transfers = [...transfers, ...newBatch]

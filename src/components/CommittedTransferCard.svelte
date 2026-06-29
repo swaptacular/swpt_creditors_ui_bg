@@ -18,7 +18,7 @@
   }
 
   function getDate(t: ExtendedLedgerEntry): string {
-    return new Date(t.addedAt).toLocaleString()
+    return new Date(t.addedAt).toLocaleString('bg-BG')
   }
   
   function calcDisplayAmount(amt: bigint): string {

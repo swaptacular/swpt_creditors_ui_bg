@@ -268,10 +268,10 @@
               {/if}
 
               This payment request has been created at
-              {sealedAt?.toLocaleString()}.
+              {sealedAt?.toLocaleString('bg-BG')}.
 
               {#if deadline.getTime()}
-                The deadline for the payment is {deadline.toLocaleString()}.
+                The deadline for the payment is {deadline.toLocaleString('bg-BG')}.
               {/if}
 
               {#if action.editedNote}
