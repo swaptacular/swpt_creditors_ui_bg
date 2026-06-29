@@ -121,22 +121,22 @@
       case 'ConfigAccount': {
         const debtorName = getDebtorName(action.accountUri)
         return debtorName
-          ? `Управлявай сметката ми към "${debtorName}".`
-          : 'Управлявай сметка.'
+          ? `Управление на сметката към "${debtorName}".`
+          : 'Управление сметка.'
       }
       case 'UpdatePolicy': {
         const debtorName = getDebtorName(action.accountUri)
         return debtorName
-          ? `Промени правилата за автоматична обмяна по сметката ми към "${debtorName}".`
-          : 'Промени правилата за автоматична обмяна по една от сметките.'
+          ? `Промяна на правилата за автоматична обмяна по сметката към "${debtorName}".`
+          : 'Промяна на правилата за автоматична обмяна по една от сметките.'
       }
       case 'PaymentRequest': {
         const debtorName = getDebtorName(action.accountUri)
         if (!debtorName) {
-          return 'Поискай плащане.'
+          return 'Получи плащане.'
         }
         if (action.sealedAt === undefined) {
-          return `Поискай плащане през "${debtorName}".`
+          return `Получи плащане през "${debtorName}".`
         } else {
           const n = 120  // number of characters to show from the payment note.
           const s = action.editedNote
@@ -147,9 +147,9 @@
           const display = app.accountsMap.getAccountDisplay(action.accountUri)
           if (action.editedAmount && display) {
             const unitAmount = amountToString(action.editedAmount, display.amountDivisor, display.decimalPlaces)
-            return `Поискай ${unitAmount} ${display.unit} през "${debtorName}"${note}.`
+            return `Получи ${unitAmount} ${display.unit} през "${debtorName}"${note}.`
           } else {
-            return `Поискай плащане през "${debtorName}"${note}.`
+            return `Получи плащане през "${debtorName}"${note}.`
           }
         }
       }
