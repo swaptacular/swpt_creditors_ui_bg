@@ -34,11 +34,11 @@
     case 'ApproveDebtorName':
       return 'Одобри името'
     case 'ConfigAccount':
-      return 'Управлявай сметката'
+      return 'Управление на сметка'
     case 'UpdatePolicy':
       return 'Промени правилата'
     case 'PaymentRequest':
-      return 'Поискай плащане'
+      return 'Получаване на плащане'
     default:
       return 'Неизвестен вид действие'
     }
@@ -104,30 +104,30 @@
       case 'ApprovePeg': {
         const debtorName = getDebtorName(action.accountUri)
         const descripiton = debtorName
-          ? `Нов фиксиран курс на обмен между "${debtorName}" и друга валута.`
-          : 'Нов фиксиран курс на обмен между две валути.'
+          ? `Одобри фиксиран курс на обмен между "${debtorName}" и друга валута.`
+          : 'Одобри фиксиран курс на обмен между две валути.'
         return descripiton
       }
       case 'ApproveAmountDisplay': {
         const debtorName = getDebtorName(action.accountUri)
         return debtorName ?
-          `Нов начин на показване на сумите във валутата "${debtorName}".` :
-          'Нов начин на показване на суми.'
+          `Одобри нов начин на показване на сумите във валутата "${debtorName}".` :
+          'Одобри нов начин на показване на суми.'
       }
       case 'ApproveDebtorName': {
         const debtorName = getDebtorName(action.accountUri)
-        return debtorName ? `Ново име на валутата "${debtorName}".` : 'Ново име на валута.'
+        return debtorName ? `Одобри ново име на валутата "${debtorName}".` : 'Одобри ново име на валута.'
       }
       case 'ConfigAccount': {
         const debtorName = getDebtorName(action.accountUri)
         return debtorName
-          ? `Управление на сметката към "${debtorName}".`
-          : 'Управление сметка.'
+          ? `Управление на сметката ми към "${debtorName}".`
+          : 'Управление на сметка.'
       }
       case 'UpdatePolicy': {
         const debtorName = getDebtorName(action.accountUri)
         return debtorName
-          ? `Промяна на правилата за автоматична обмяна по сметката към "${debtorName}".`
+          ? `Промяна на правилата за автоматична обмяна по сметката ми към "${debtorName}".`
           : 'Промяна на правилата за автоматична обмяна по една от сметките.'
       }
       case 'PaymentRequest': {
