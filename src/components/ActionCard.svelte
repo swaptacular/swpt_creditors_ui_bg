@@ -143,7 +143,7 @@
           const nonemptyNote = /\S/u.test(s)
           const note = nonemptyNote
             ? (s.length <= n ? `: ${removeEndingDot(s)}` : `: ${s.slice(0, n)}..`)
-            : `: ${action.sealedAt.toLocaleString('bg-BG')}`
+            : `: ${removeEndingDot(action.sealedAt.toLocaleString('bg-BG'))}`
           const display = app.accountsMap.getAccountDisplay(action.accountUri)
           if (action.editedAmount && display) {
             const unitAmount = amountToLocaleString(action.editedAmount, display.amountDivisor, display.decimalPlaces)

@@ -268,10 +268,10 @@
               {/if}
 
               Тази покана за плащане е създадена на
-              {sealedAt?.toLocaleString('bg-BG')}.
+              {sealedAt?.toLocaleString('bg-BG')}
 
               {#if deadline.getTime()}
-                Крайният срок за плащане е {deadline.toLocaleString('bg-BG')}.
+                Крайният срок за плащане е {deadline.toLocaleString('bg-BG')}
               {/if}
 
               {#if action.editedNote}
