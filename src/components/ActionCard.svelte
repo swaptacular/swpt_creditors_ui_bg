@@ -146,7 +146,7 @@
             : `: ${action.sealedAt.toLocaleString('bg-BG')}`
           const display = app.accountsMap.getAccountDisplay(action.accountUri)
           if (action.editedAmount && display) {
-            const unitAmount = amountLocaleString(action.editedAmount, display.amountDivisor, display.decimalPlaces)
+            const unitAmount = amountToLocaleString(action.editedAmount, display.amountDivisor, display.decimalPlaces)
             return `Получи ${unitAmount} ${display.unit} през „${debtorName}“${note}.`
           } else {
             return `Получи плащане през „${debtorName}“${note}.`
