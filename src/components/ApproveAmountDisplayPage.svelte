@@ -130,7 +130,7 @@
                   Начин на показване
                 </Title>
                 <Content>
-                  "{debtorName}"
+                  „{debtorName}“
                   {#if !knownDebtor}
                     (непотвърдена сметка)
                   {/if}

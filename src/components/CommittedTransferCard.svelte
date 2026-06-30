@@ -94,9 +94,9 @@
         {:else if rationale === 'agent'}
           автоматична обмяна
         {:else if amount < 0 && payeeName}
-          платени на "{payeeName}"
+          платени на „{payeeName}“
         {:else if amount > 0 && committedTransfer && committedTransfer.noteFormat !== '.' && payeeReference}
-          за "{payeeReference.slice(0, 36)}"
+          за „{payeeReference.slice(0, 36)}“
         {/if}
       </p>
       <p class="transfer-note">

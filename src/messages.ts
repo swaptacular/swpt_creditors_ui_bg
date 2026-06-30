@@ -85,7 +85,7 @@ export function getTransferStatusDetails(t: any): string {
       const reason = getFailureReason(t.result.error.errorCode)
       return `Плащането е започнало на ${initiatedAt}`
         + ` и е завършило неуспешно на ${finalizedAt}.`
-        + ` Причината за неуспеха е: "${reason}".`
+        + ` Причината за неуспеха е: „${reason}“.`
     } else {
       const paymentRefernece = t.paymentInfo.payeeReference
       if (paymentRefernece) {
@@ -95,7 +95,7 @@ export function getTransferStatusDetails(t: any): string {
           : `${paymentRefernece.slice(0, maxLength)}...`
         return `Плащането е започнало на ${initiatedAt}`
           + ` и е завършило успешно на ${finalizedAt}.`
-          + ` Идентификатор на плащането: "${shortRef}".`
+          + ` Идентификатор на плащането: „${shortRef}“.`
       } else {
         return `Плащането е започнало на ${initiatedAt}`
           + ` и е завършило успешно на ${finalizedAt}.`

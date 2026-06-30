@@ -62,7 +62,7 @@
   $: description = paymentInfo.description
   $: contentFormat = description.contentFormat
   $: content = description.content
-  $: currencyName = display?.debtorName !== undefined ? `"${display.debtorName}"` : "неизвестна валута"
+  $: currencyName = display?.debtorName !== undefined ? `„${display.debtorName}“` : "неизвестна валута"
   $: amountDivisor = display?.amountDivisor ?? 1
   $: decimalPlaces = display?.decimalPlaces ?? 0n
   $: unit = display?.unit ?? '\u00a4'

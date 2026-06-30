@@ -102,7 +102,7 @@
         <Cell spanDevices={{ desktop: 12, tablet: 8, phone: 4 }}>
           <Paper style="margin-top: 12px; margin-bottom: 24px; word-break: break-word" elevation={6}>
             <Title>
-              Промени в "{debtorName}"
+              Промени в „{debtorName}“
               {#if !knownDebtor}
                 (непотвърдена сметка)
               {/if}
@@ -142,7 +142,7 @@
                 {#if changes.debtorName}
                   <li>
                     Официалното име на валутата е променено на
-                    "{debtorData.debtorName}". По-късно ще можете да
+                    „{debtorData.debtorName}“. По-късно ще можете да
                     потвърдите тази важна промяна.
                   </li>
                 {/if}

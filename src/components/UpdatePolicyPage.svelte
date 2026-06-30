@@ -237,9 +237,9 @@
                 >
                 <svelte:fragment slot="title">
                   {#if knownDebtor}
-                    Правила за автоматична обмяна с "{debtorName}"
+                    Правила за автоматична обмяна с „{debtorName}“
                   {:else}
-                    Правила за автоматична обмяна с "{debtorName}" (непотвърдена сметка)
+                    Правила за автоматична обмяна с „{debtorName}“ (непотвърдена сметка)
                   {/if}
                 </svelte:fragment>
               </AccountInfo>

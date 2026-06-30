@@ -139,7 +139,7 @@
           aria-describedby="show-new-currencies-dialog-content"
           on:MDCDialog:closed={() => showNewCoinList = false}
           >
-          <DialogTitle>Валути, които посочват същата дигитална монета като "{peggedDebtorName}":</DialogTitle>
+          <DialogTitle>Валути, които посочват същата дигитална монета като „{peggedDebtorName}“:</DialogTitle>
           <DialogContent style="word-break: break-word">
             <ul class="currency-list">
               {#each newCoinList as currencyName }
@@ -170,13 +170,13 @@
                 </Title>
                 <Content>
                   <p>
-                    "{peggedDebtorName}"
+                    „{peggedDebtorName}“
                     {#if !peggedKnownDebtor}
                       (непотвърдена сметка)
                     {/if}
                     е обявил фиксиран курс на обмен с
-                    "{pegDebtorName}". Проблемът е, че дигиталната
-                    монета, обявена за "{pegDebtorName}", не съвпада с
+                    „{pegDebtorName}“. Проблемът е, че дигиталната
+                    монета, обявена за „{pegDebtorName}“, не съвпада с
                     вече познатата монета, асоциирана с него.
                   </p>
                     <ul class="checklist">
@@ -195,10 +195,10 @@
                         <li>
                           {#if newCoinList.length === 1}
                             <LinkPopup bind:show={showNewCoinList}>1 обвързана валута</LinkPopup>
-                            посочва същата монета като "{peggedDebtorName}".
+                            посочва същата монета като „{peggedDebtorName}“.
                           {:else}
                             <LinkPopup bind:show={showNewCoinList}>{newCoinList.length} обвързани валути</LinkPopup>
-                            посочват същата монета като "{peggedDebtorName}".
+                            посочват същата монета като „{peggedDebtorName}“.
                           {/if}
                         </li>
                       {/if}
@@ -218,7 +218,7 @@
                   <span slot="label">
                     Изглежда, че познатата монета е остаряла или
                     невалидна. Замени я с монетата, която
-                    "{peggedDebtorName}" обявява.
+                    „{peggedDebtorName}“ обявява.
                   </span>
                 </FormField>
               </div>

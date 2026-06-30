@@ -204,12 +204,12 @@
                 <Title>Фиксиран курс</Title>
                 <Content>
                   <p>
-                    "{peggedDebtorName}"
+                    „{peggedDebtorName}“
                     {#if !peggedKnownDebtor}
                       (непотвърдена сметка)
                     {/if}
                     е обявил фиксиран курс на обмен с
-                    "{pegDebtorName}". Ако този фиксиран курс бъде одобрен:
+                    „{pegDebtorName}“. Ако този фиксиран курс бъде одобрен:
                   </p>
                   <ul class="checklist">
                     <li>
@@ -220,10 +220,10 @@
                     </li>
                     {#if finalUnitAmount !== undefined }
                       <li>
-                        Тъй като "{pegDebtorName}" е
+                        Тъй като „{pegDebtorName}“ е
                         обвързан с друга валута, всеки
                         <em class="amount">{peggedUnitAmount}</em> във
-                        вашата сметка към "{peggedDebtorName}" ще
+                        вашата сметка към „{peggedDebtorName}“ ще
                         се приемат за равни на
                         <em class="amount">{finalUnitAmount}</em>.
                       </li>
@@ -233,12 +233,12 @@
                         {#if currencyList.length === 1}
                           <LinkPopup bind:show={showCurrencies}>1 друга валута</LinkPopup>
                           ще бъде непряко обвързана с
-                          "{pegDebtorName}", което може да промени
+                          „{pegDebtorName}“, което може да промени
                           начина, по който се показват нейните суми.
                         {:else}
                           <LinkPopup bind:show={showCurrencies}>{currencyList.length} други валути</LinkPopup>
                           ще бъдат непряко обвързани с
-                          "{pegDebtorName}", което може да промени
+                          „{pegDebtorName}“, което може да промени
                           начина, по който се показват техните суми.
                         {/if}
                       </li>

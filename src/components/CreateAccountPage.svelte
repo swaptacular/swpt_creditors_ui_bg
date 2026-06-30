@@ -235,12 +235,12 @@
                 валута (опорната валута).
               </p>
               <p>
-                Издателят на валутата "{peggedDebtorName}" е обявил
+                Издателят на валутата „{peggedDebtorName}“ е обявил
                 фиксиран курс на обмен с валутата
-                "{data.debtorData.debtorName}". Преди да одобрите този
+                „{data.debtorData.debtorName}“. Преди да одобрите този
                 фиксиран курс, първо трябва да си
                 <span style="font-weight: bold">
-                  откриете сметка към "{data.debtorData.debtorName}".
+                  откриете сметка към „{data.debtorData.debtorName}“.
                 </span>
               </p>
             </DialogContent>
@@ -269,9 +269,9 @@
                   >
                   <svelte:fragment slot="title">
                     {#if data.account.display.debtorName === undefined}
-                      Сметка към "{data.debtorData.debtorName}"
+                      Сметка към „{data.debtorData.debtorName}“
                     {:else}
-                      Съществуваща сметка към "{data.debtorData.debtorName}"
+                      Съществуваща сметка към „{data.debtorData.debtorName}“
                     {/if}
                   </svelte:fragment>
                   <svelte:fragment slot="content">

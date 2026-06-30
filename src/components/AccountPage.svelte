@@ -280,7 +280,7 @@
           aria-labelledby="ack-payment-help-dialog-title"
           aria-describedby="ack-payment-help-dialog-content"
           >
-          <DialogTitle>Успешно открихте сметка към "{debtorName}".</DialogTitle>
+          <DialogTitle>Успешно открихте сметка към „{debtorName}“.</DialogTitle>
           <DialogContent style="word-break: break-word">
             <p>
               Моля, погледнете реда от бутони в долната част на
@@ -321,9 +321,9 @@
           >
           <svelte:fragment slot="title">
             {#if knownDebtor}
-              Сметка към "{debtorName}"
+              Сметка към „{debtorName}“
             {:else}
-              Непотвърдена сметка към "{debtorName}"
+              Непотвърдена сметка към „{debtorName}“
             {/if}
           </svelte:fragment>
 
@@ -386,7 +386,7 @@
         <div class="text-container">
           <Paper elevation={8} style="margin: 0 16px 24px 16px; max-width: 600px; word-break: break-word">
             <Title>
-              Дигитална монета на "{debtorName}"
+              Дигитална монета на „{debtorName}“
             </Title>
             <Content>
               <a href="{digitalCoin}" target="_blank" rel="noreferrer" on:click|preventDefault={() => downloadLinkElement?.click()}>
@@ -404,7 +404,7 @@
     {:else if tab === 'sort'}
       <div in:fade="{{ duration }}">
         <Paper style="margin: 24px 18px; word-break: break-word" elevation={6}>
-          <Title>Приоритет при подреждане на "{debtorName}"</Title>
+          <Title>Приоритет при подреждане на „{debtorName}“</Title>
           <Content>
             За да намирате по-лесно тази сметка сред останалите
             сметки, можете да увеличите нейния приоритет при

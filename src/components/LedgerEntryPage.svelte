@@ -98,7 +98,7 @@
       <Cell spanDevices={{ desktop: 12, tablet: 8, phone: 4 }}>
         <Paper style="margin-top: 12px; margin-bottom: 24px; word-break: break-word" elevation={6}>
           <Title>
-            Превод през "{debtorName}"
+            Превод през „{debtorName}“
           </Title>
           <Content>
             <h5>{getDate(transfer)}</h5>
@@ -109,9 +109,9 @@
               {:else if rationale === 'agent'}
                 автоматична обмяна
               {:else if amount < 0 && payeeName}
-                платени на "{payeeName}"
+                платени на „{payeeName}“
               {:else if amount > 0 && committedTransfer && committedTransfer.noteFormat !== '.' && payeeReference}
-                за "{payeeReference.slice(0, 36)}"
+                за „{payeeReference.slice(0, 36)}“
               {/if}
             </p>
               {#if contentFormat === '.' || contentFormat === '-'}

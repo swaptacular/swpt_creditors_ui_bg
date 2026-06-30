@@ -224,7 +224,7 @@
                       </a>
                     </Text>
                   </Chip>
-                  Плащане през "{debtorName}"
+                  Плащане през „{debtorName}“
                 </Title>
                 <Content style="clear: both">
                   За да получите плащане, трябва да попълните покана

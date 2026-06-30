@@ -255,16 +255,16 @@
                   </a>
                 </Text>
               </Chip>
-              Плащане през "{debtorName}"
+              Плащане през „{debtorName}“
             </Title>
             <Content>
               <a href="qr" target="_blank" rel="noreferrer" on:click|preventDefault={() => downloadImageElement?.click()}>
                 QR кодът по-горе
               </a>
               {#if amount === 0n}
-                съдържа универсална покана за плащане с получател "{payeeName}".
+                съдържа универсална покана за плащане с получател „{payeeName}“.
               {:else}
-                съдържа покана за плащане на {unitAmount} {unit} с получател "{payeeName}".
+                съдържа покана за плащане на {unitAmount} {unit} с получател „{payeeName}“.
               {/if}
 
               Тази покана за плащане е създадена на

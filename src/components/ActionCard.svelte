@@ -38,7 +38,7 @@
     case 'UpdatePolicy':
       return 'Промени правилата'
     case 'PaymentRequest':
-      return 'Получаване на плащане'
+      return 'Получи плащане'
     default:
       return 'Неизвестен вид действие'
     }
@@ -90,44 +90,44 @@
       case "CreateAccount": {
         const editedDebtorName = action.accountCreationState?.editedDebtorName
         const descripiton = editedDebtorName !== undefined
-          ? `Потвърди откриването на сметка към "${editedDebtorName}".`
+          ? `Потвърди откриването на сметка към „${editedDebtorName}“.`
           : "Открий нова сметка."
         return descripiton
       }
       case "AckAccountInfo": {
         const debtorName = getDebtorName(action.accountUri)
         const descripiton = debtorName
-          ? `Има промени във валутата "${debtorName}".`
+          ? `Има промени във валутата „${debtorName}“.`
           : 'Има промени в една от валутите.'
         return descripiton
       }
       case 'ApprovePeg': {
         const debtorName = getDebtorName(action.accountUri)
         const descripiton = debtorName
-          ? `Одобри фиксиран курс на обмен между "${debtorName}" и друга валута.`
+          ? `Одобри фиксиран курс на обмен между „${debtorName}“ и друга валута.`
           : 'Одобри фиксиран курс на обмен между две валути.'
         return descripiton
       }
       case 'ApproveAmountDisplay': {
         const debtorName = getDebtorName(action.accountUri)
         return debtorName ?
-          `Одобри нов начин на показване на сумите във валутата "${debtorName}".` :
+          `Одобри нов начин на показване на сумите във валутата „${debtorName}“.` :
           'Одобри нов начин на показване на суми.'
       }
       case 'ApproveDebtorName': {
         const debtorName = getDebtorName(action.accountUri)
-        return debtorName ? `Одобри ново име на валутата "${debtorName}".` : 'Одобри ново име на валута.'
+        return debtorName ? `Одобри ново име на валутата „${debtorName}“.` : 'Одобри ново име на валута.'
       }
       case 'ConfigAccount': {
         const debtorName = getDebtorName(action.accountUri)
         return debtorName
-          ? `Управление на сметката ми към "${debtorName}".`
+          ? `Управление на сметката ми към „${debtorName}“.`
           : 'Управление на сметка.'
       }
       case 'UpdatePolicy': {
         const debtorName = getDebtorName(action.accountUri)
         return debtorName
-          ? `Промяна на правилата за автоматична обмяна по сметката ми към "${debtorName}".`
+          ? `Промяна на правилата за автоматична обмяна по сметката ми към „${debtorName}“.`
           : 'Промяна на правилата за автоматична обмяна по една от сметките.'
       }
       case 'PaymentRequest': {
@@ -136,7 +136,7 @@
           return 'Получи плащане.'
         }
         if (action.sealedAt === undefined) {
-          return `Получи плащане през "${debtorName}".`
+          return `Получи плащане през „${debtorName}“.`
         } else {
           const n = 120  // number of characters to show from the payment note.
           const s = action.editedNote
@@ -147,9 +147,9 @@
           const display = app.accountsMap.getAccountDisplay(action.accountUri)
           if (action.editedAmount && display) {
             const unitAmount = amountToString(action.editedAmount, display.amountDivisor, display.decimalPlaces)
-            return `Получи ${unitAmount} ${display.unit} през "${debtorName}"${note}.`
+            return `Получи ${unitAmount} ${display.unit} през „${debtorName}“${note}.`
           } else {
-            return `Получи плащане през "${debtorName}"${note}.`
+            return `Получи плащане през „${debtorName}“${note}.`
           }
         }
       }

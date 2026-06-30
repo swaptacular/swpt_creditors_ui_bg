@@ -149,14 +149,14 @@
                 <Content>
                   <p>
                     {#if changedName}
-                      "{oldName}"
+                      „{oldName}“
                       {#if !knownDebtor}
                         (непотвърдена сметка)
                       {/if}
-                      е променил официалното име на валутата на "{newName}".
+                      е променил официалното име на валутата на „{newName}“.
                     {:else}
                       Сега официалното име на валутата е
-                      "{newName}"{#if !knownDebtor} (непотвърдена сметка).{:else}.{/if}
+                      „{newName}“{#if !knownDebtor} (непотвърдена сметка).{:else}.{/if}
                     {/if}
                     В момента разполагате с {availableAmount} {amountUnit} по тази сметка.
                   </p>

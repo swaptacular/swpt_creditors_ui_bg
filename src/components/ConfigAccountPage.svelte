@@ -182,9 +182,9 @@
                 >
                 <svelte:fragment slot="title">
                   {#if knownDebtor}
-                    Сметка към "{display.debtorName}"
+                    Сметка към „{display.debtorName}“
                   {:else}
-                    Непотвърдена сметка към "{display.debtorName}"
+                    Непотвърдена сметка към „{display.debtorName}“
                   {/if}
                 </svelte:fragment>
               </AccountInfo>
