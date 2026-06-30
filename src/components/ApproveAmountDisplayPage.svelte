@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { AppState, ApproveAmountDisplayModel, ApproveAmountDisplayActionWithId } from '../app-state'
-  import { limitAmountDivisor, amountToString } from '../format-amounts'
+  import { limitAmountDivisor, amountToString, amountToLocaleString } from '../format-amounts'
   import Fab, { Label } from '@smui/fab'
   import Paper, { Title, Content } from '@smui/paper'
   import LayoutGrid, { Cell } from '@smui/layout-grid'
@@ -44,6 +44,13 @@
     return amountToString(amount, model.action.amountDivisor, model.action.decimalPlaces)
   }
 
+  function formatAsLocaleUnitAmount(amount: bigint | number | undefined): string {
+    if (amount === undefined) {
+      return ''
+    }
+    return amountToLocaleString(amount, model.action.amountDivisor, model.action.decimalPlaces)
+  }
+
   function shakeForm(): void {
     const shakingSuffix = ' shaking-block'
     const origClassName = shakingElement.className
@@ -71,10 +78,11 @@
   $: action = model.action
   $: knownDebtor = model.display.knownDebtor
   $: debtorName = model.display.debtorName ?? ''
+  $: minNegligibleAmount = formatAsLocaleUnitAmount(action.state?.tinyNegligibleAmount || 0)
   $: negligibleUnitAmountStep = formatAsUnitAmount(action.state?.tinyNegligibleAmount)
-  $: oldAmountString = amountToString(model.availableAmount, model.display.amountDivisor, model.display.decimalPlaces)
+  $: oldAmountString = amountToLocaleString(model.availableAmount, model.display.amountDivisor, model.display.decimalPlaces)
   $: oldUnitAmount = oldAmountString + ' ' + model.display.unit
-  $: newAmountString = amountToString(model.availableAmount, action.amountDivisor, action.decimalPlaces)
+  $: newAmountString = amountToLocaleString(model.availableAmount, action.amountDivisor, action.decimalPlaces)
   $: newUnitAmount = newAmountString + ' ' + action.unit
   $: invalid = approved === 'yes' && invalidNegligibleUnitAmount
 </script>
@@ -162,7 +170,7 @@
                 required
                 variant="outlined"
                 type="number"
-                input$min={negligibleUnitAmountStep}
+                input$min={negligibleUnitAmountStep || '0'}
                 input$step={negligibleUnitAmountStep}
                 style="width: 100%"
                 withTrailingIcon={invalidNegligibleUnitAmount}
@@ -180,7 +188,7 @@
                 <HelperText style="word-break: break-word" slot="helper" persistent>
                   Сума, която считате за незначителна или маловажна.
                   Тя трябва да бъде равна или по-голяма от
-                  {negligibleUnitAmountStep} {action.unit}.
+                  {minNegligibleAmount} {action.unit}.
                   {appConfig.siteTitle} ще използва тази сума, за да
                   прецени дали сметката може да бъде закрита и дали
                   дадено входящо плащане може да бъде пренебрегнато. Ако не

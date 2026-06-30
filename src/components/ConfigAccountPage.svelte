@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { AppState, ConfigAccountModel, ConfigAccountActionWithId } from '../app-state'
-  import { amountToString, limitAmountDivisor, calcSmallestDisplayableNumber } from '../format-amounts'
+  import { amountToString, amountToLocaleString, limitAmountDivisor, calcSmallestDisplayableNumber } from '../format-amounts'
   import Fab, { Label } from '@smui/fab'
   import LayoutGrid, { Cell } from '@smui/layout-grid'
   import Textfield from '@smui/textfield'
@@ -55,6 +55,17 @@
       return ''
     }
     return amountToString(amount, amountDivisor, decimalPlaces)
+  }
+
+  function formatAsLocaleUnitAmount(
+    amount: bigint | number | undefined,
+    amountDivisor: number,
+    decimalPlaces: bigint,
+  ): string {
+    if (amount === undefined) {
+      return ''
+    }
+    return amountToLocaleString(amount, amountDivisor, decimalPlaces)
   }
 
   function showActions(): void {
@@ -116,6 +127,7 @@
   $: unit = display.unit ?? '\u00A4'
   $: tinyNegligibleAmount = calcSmallestDisplayableNumber(amountDivisor, decimalPlaces)
   $: negligibleUnitAmountStep = formatAsUnitAmount(tinyNegligibleAmount, amountDivisor, decimalPlaces)
+  $: minNegligibleAmount = formatAsLocaleUnitAmount(tinyNegligibleAmount, amountDivisor, decimalPlaces)
   $: disableForceDeletion = !allowUnsafeDeletion && !scheduledForDeletion
   $: invalid = (
     invalidDebtorName ||
@@ -217,7 +229,7 @@
                 required
                 variant="outlined"
                 type="number"
-                input$min={negligibleUnitAmountStep}
+                input$min={negligibleUnitAmountStep || '0'}
                 input$step={negligibleUnitAmountStep}
                 style="width: 100%"
                 withTrailingIcon={invalidNegligibleUnitAmount}
@@ -234,7 +246,7 @@
                 <HelperText style="word-break: break-word" slot="helper" persistent>
                   Сума, която считате за незначителна или маловажна.
                   Тя трябва да бъде равна или по-голяма от
-                  {negligibleUnitAmountStep} {unit}.
+                  {minNegligibleAmount} {unit}.
                   {appConfig.siteTitle} ще използва тази сума, за да
                   прецени дали сметката може да бъде закрита и дали
                   дадено входящо плащане може да бъде пренебрегнато. Ако не

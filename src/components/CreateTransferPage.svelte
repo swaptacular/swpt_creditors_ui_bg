@@ -5,7 +5,7 @@
   import { INVALID_PAYMENT_REQUEST } from '../messages'
   import { getCreateTransferActionStatus } from '../operations'
   import { generatePr0Blob } from '../payment-requests'
-  import { amountToString, limitAmountDivisor, MAX_INT64 } from '../format-amounts'
+  import { amountToString, amountToLocaleString, limitAmountDivisor, MAX_INT64 } from '../format-amounts'
   import { onDestroy } from 'svelte'
   import { Title as DialogTitle, Content as DialogContent, Actions, InitialFocus } from '@smui/dialog'
   import Button, { Label as ButtonLabel } from '@smui/button'
@@ -47,6 +47,13 @@
     const amountDivisor = display?.amountDivisor ?? 1
     const decimalPlaces = display?.decimalPlaces ?? 0n
     return amount ? amountToString(amount, amountDivisor, decimalPlaces) : ''
+  }
+
+  function getLocaleUnitAmount(accountData: AccountFullData | undefined, amount: bigint): string {
+    const display = accountData?.display
+    const amountDivisor = display?.amountDivisor ?? 1
+    const decimalPlaces = display?.decimalPlaces ?? 0n
+    return amount ? amountToLocaleString(amount, amountDivisor, decimalPlaces) : ''
   }
 
   function resetAmount(): void {
@@ -185,6 +192,7 @@
   $: action = model.action
   $: accountData = model.accountData
   $: requestedUnitAmount = getUnitAmount(accountData, action.requestedAmount)
+  $: localeRequestedUnitAmount = getLocaleUnitAmount(accountData, action.requestedAmount)
   $: unchangedAmount = Number(unitAmount) === Number(requestedUnitAmount)
   $: paymentInfo = action.paymentInfo
   $: display = accountData?.display
@@ -242,7 +250,7 @@
           <DialogContent id="confirm-change-amount-dialog-content">
             Сумата, която възнамерявате да платите ({unitAmount}
             {unit}), не съвпада със сумата, посочена в поканата за
-            плащане ({requestedUnitAmount} {unit}). Сигурни ли сте, че
+            плащане ({localeRequestedUnitAmount} {unit}). Сигурни ли сте, че
             желаете да извършите това плащане?
           </DialogContent>
           <Actions>

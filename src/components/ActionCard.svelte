@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { AppState, ActionRecordWithId } from '../app-state'
-  import { amountToString } from '../format-amounts'
+  import { amountToLocaleString } from '../format-amounts'
   import { getContext } from 'svelte'
   import { fly, fade } from 'svelte/transition'
   import Button, { Label } from '@smui/button'
@@ -61,11 +61,11 @@
         const display = app.accountsMap.getAccountDisplay(action.accountUri)
         if (display) {
           const unit = display.unit
-          const unitAmount = amountToString(amount, display.amountDivisor, display.decimalPlaces)
+          const unitAmount = amountToLocaleString(amount, display.amountDivisor, display.decimalPlaces)
           return `Плати ${unitAmount} ${unit} на ${payeeName}.`
         } else {
           const unit = "\u00a4"
-          const unitAmount = amountToString(amount, 1, 0n)
+          const unitAmount = amountToLocaleString(amount, 1, 0n)
           return `Плати ${unitAmount} ${unit} на ${payeeName}.`
         }
       }
@@ -84,7 +84,7 @@
             unit = display.unit ?? "\u00a4"
           }
         }
-        const unitAmount = amountToString(transfer.amount, amountDivisor, decimalPlaces)
+        const unitAmount = amountToLocaleString(transfer.amount, amountDivisor, decimalPlaces)
         return `${title}: ${unitAmount} ${unit} на ${payeeName}.`
       }
       case "CreateAccount": {
@@ -146,7 +146,7 @@
             : `: ${action.sealedAt.toLocaleString('bg-BG')}`
           const display = app.accountsMap.getAccountDisplay(action.accountUri)
           if (action.editedAmount && display) {
-            const unitAmount = amountToString(action.editedAmount, display.amountDivisor, display.decimalPlaces)
+            const unitAmount = amountLocaleString(action.editedAmount, display.amountDivisor, display.decimalPlaces)
             return `Получи ${unitAmount} ${display.unit} през „${debtorName}“${note}.`
           } else {
             return `Получи плащане през „${debtorName}“${note}.`

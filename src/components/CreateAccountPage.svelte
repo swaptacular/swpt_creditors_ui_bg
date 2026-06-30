@@ -12,7 +12,7 @@
   import Checkbox from '@smui/checkbox'
   import Button, { Label as ButtonLabel } from '@smui/button'
   import { Title as DialogTitle, Content as DialogContent, Actions, InitialFocus } from '@smui/dialog'
-  import { amountToString } from '../format-amounts'
+  import { amountToString, amountToLocaleString } from '../format-amounts'
   import Page from './Page.svelte'
   import Dialog from './Dialog.svelte'
   import EnterPinDialog from './EnterPinDialog.svelte'
@@ -53,6 +53,17 @@
       return ''
     }
     return amountToString(
+      amount,
+      model.createAccountData?.amountDivisor ?? 1,
+      model.createAccountData?.decimalPlaces ?? 0n,
+    )
+  }
+
+  function formatAsLocaleUnitAmount(amount: bigint | number | undefined): string {
+    if (amount === undefined) {
+      return ''
+    }
+    return amountToLocaleString(
       amount,
       model.createAccountData?.amountDivisor ?? 1,
       model.createAccountData?.decimalPlaces ?? 0n,
@@ -129,6 +140,7 @@
   $: pageTitle = isCreateAccountAction ? 'Потвърждаване на сметка' : 'Откриване на сметка'
   $: data = model.createAccountData
   $: negligibleUnitAmountStep = formatAsUnitAmount(action.accountCreationState?.tinyNegligibleAmount)
+  $: minNegligibleAmount = formatAsLocaleUnitAmount(action.accountCreationState?.tinyNegligibleAmount || 0)
   $: invalid = (
     invalidDebtorName ||
     !uniqueDebtorName ||
@@ -278,7 +290,7 @@
                     <ul>
                       <li>
                         <em class="amount">
-                          {formatAsUnitAmount(data.account.ledger.principal)}&nbsp;{data.unit}
+                          {formatAsLocaleUnitAmount(data.account.ledger.principal)}&nbsp;{data.unit}
                         </em>
                         са налични по вашата сметка.
                       </li>
@@ -349,7 +361,7 @@
                   required
                   variant="outlined"
                   type="number"
-                  input$min={negligibleUnitAmountStep}
+                  input$min={negligibleUnitAmountStep || '0'}
                   input$step={negligibleUnitAmountStep}
                   style="width: 100%"
                   withTrailingIcon={invalidNegligibleUnitAmount}
@@ -366,7 +378,7 @@
                   <HelperText style="word-break: break-word" slot="helper" persistent>
                     Сума, която считате за незначителна или маловажна.
                     Тя трябва да бъде равна или по-голяма от
-                    {negligibleUnitAmountStep} {data.unit}.
+                    {minNegligibleAmount} {data.unit}.
                     {appConfig.siteTitle} ще използва тази сума, за да
                     прецени дали сметката може да бъде закрита и дали
                     дадено входящо плащане може да бъде пренебрегнато.
