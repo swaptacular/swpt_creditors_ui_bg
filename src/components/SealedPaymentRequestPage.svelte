@@ -296,7 +296,7 @@
           aria-describedby="confirm-delete-dialog-content"
           on:MDCDialog:closed={() => showConfirmDialog = false}
           >
-          <DialogTitle id="confirm-delete-dialog-title">Discard this payment request</DialogTitle>
+          <DialogTitle id="confirm-delete-dialog-title">Премахни тази покана за плащане</DialogTitle>
           <DialogContent id="confirm-delete-dialog-content">
             {#if done}
               Сигурни ли сте, че искате да направите това?
