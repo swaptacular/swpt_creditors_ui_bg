@@ -175,8 +175,7 @@
                 {#if changes.interestRate}
                   <li>
                     На {interestRateChangeDate} издателят е променил
-                    годишния лихвен процент по сметката ви. Новият
-                    лихвен процент е {interestRate}%.
+                    годишния лихвен процент по сметката ви на {interestRate}%.
                   </li>
                 {/if}
 
