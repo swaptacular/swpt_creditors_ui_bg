@@ -33,6 +33,11 @@ SITE_TITLE=Swaptacular
 # an empty string.
 FIND_ISSUERS_URL=https://www.google.com/maps
 
+# A string that will be shown to the users as the transaction fee in
+# percents, collected for arranged automatic exchanges. The default is
+# an empty string.
+EXCHANGE_FEE=0.1
+
 # If your creditors agent node performs automatic exchanges, then set
 # these to the base currency's "debtor info locator" and "debtor ID".
 # The defaults are an empty strings. (Note: In order to be traded,
