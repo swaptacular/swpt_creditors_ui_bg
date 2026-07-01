@@ -302,7 +302,7 @@
                     валута, когато е възможно, за да се поддържа
                     наличната сума в зададените граници.
                     {#if appConfig.exchangeFee}
-                      Такса за транзакция: {appConfig.exchangeFee}%.
+                      Такса за транзакция: {appConfig.exchangeFee.toLocaleString(undefined, {maximumSignificantDigits: 3})}%.
                     {/if}
                   </span>
                 </FormField>
