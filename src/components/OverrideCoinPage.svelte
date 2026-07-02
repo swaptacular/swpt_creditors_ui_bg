@@ -187,7 +187,7 @@
                           <LinkPopup bind:show={showKnownCoinList}>1 обвързана валута</LinkPopup>
                           използва вече познатата монета.
                         {:else}
-                          <LinkPopup bind:show={showKnownCoinList}>{knownCoinList.length} обвързани валути</LinkPopup>
+                          <LinkPopup bind:show={showKnownCoinList}>{knownCoinList.length.toLocaleString()} обвързани валути</LinkPopup>
                           използват вече познатата монета.
                         {/if}
                       </li>
@@ -197,7 +197,7 @@
                             <LinkPopup bind:show={showNewCoinList}>1 обвързана валута</LinkPopup>
                             посочва същата монета като „{peggedDebtorName}“.
                           {:else}
-                            <LinkPopup bind:show={showNewCoinList}>{newCoinList.length} обвързани валути</LinkPopup>
+                            <LinkPopup bind:show={showNewCoinList}>{newCoinList.length.toLocaleString()} обвързани валути</LinkPopup>
                             посочват същата монета като „{peggedDebtorName}“.
                           {/if}
                         </li>

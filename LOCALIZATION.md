@@ -42,8 +42,15 @@
    - `<span slot="label">`
 
    To change the way dates and times are shown, find the places where
-   the `toLocaleString()` method is called and pass your locale as a
-   parameter (`toLocaleString('bg-BG')` for example).
+   the `toLocaleString()` method is called for dates, and pass your
+   locale as a parameter (`toLocaleString('bg-BG')` for example).
 
    Note that for right-to-left languages some changes to pages' HTML
    and CSS may be needed for all pages to show correctly.
+
+5. In the untranslated version, the amounts are represented using the
+   symbols `0-9`, no thousands separator, a locale-dependent decimal
+   separator, and an optional sign prefix. If the way numbers are
+   preferably represented in the target language is different, you may
+   change the implementation of the `amountToLocaleString` function in
+   the `src/format-amounts.ts` file.

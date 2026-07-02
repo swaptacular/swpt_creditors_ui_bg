@@ -189,7 +189,7 @@
                       Изтрий 1 непотвърдена сметка, която не е
                       правилно конфигурирана.
                     {:else}
-                      Изтрий {unnamedAccountUris.length} непотвърдени
+                      Изтрий {unnamedAccountUris.length.toLocaleString()} непотвърдени
                       сметки, които не са правилно конфигурирани.
                     {/if}
                   </span>
@@ -269,7 +269,7 @@
             on:change={triggerFilterChange}
             >
               <HelperText slot="helper" persistent>
-                {shownAccounts.length}
+                {shownAccounts.length.toLocaleString()}
                 {#if shownAccounts.length == 1}
                   сметка
                 {:else}
