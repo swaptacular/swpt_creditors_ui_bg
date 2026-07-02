@@ -182,6 +182,11 @@
   }
   .button-help {
     margin-top: 1em;
+    display: flex;
+    align-items: center;
+  }
+  .button-icon {
+    margin-right: 0.5em;
   }
   .download-link {
     display: none;
@@ -284,21 +289,23 @@
           <DialogContent style="word-break: break-word">
             <p>
               Моля, погледнете реда от бутони в долната част на
-              екрана.
+              екрана. Използвайте:
             </p>
             <p class="button-help">
-              Използвайте
-              <Fab color="primary" style="vertical-align: middle">
-                <Icon class="material-icons">receipt</Icon>
-              </Fab>
-              за да поискате плащане.
+              <span class="button-icon">
+                <Fab color="primary" style="vertical-align: middle">
+                  <Icon class="material-icons">receipt</Icon>
+                </Fab>
+              </span>
+              <span>за да поискате плащане.</span>
             </p>
             <p class="button-help">
-              Използвайте
-              <Fab style="vertical-align: middle">
-                <ExchangeSvgIcon />
-              </Fab>
-              за да настоите автоматичната обмяна на валути.
+              <span class="button-icon">
+                <Fab style="vertical-align: middle">
+                  <ExchangeSvgIcon />
+                </Fab>
+              </span>
+              <span>за да настроите автоматичната обмяна на валути.</span>
             </p>
           </DialogContent>
           <Actions>
