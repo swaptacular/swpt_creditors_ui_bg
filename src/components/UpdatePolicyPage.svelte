@@ -287,7 +287,13 @@
                     touch
                     />
                   <span slot="label">
-                    Не разрешавай автоматична обмяна.
+                    Не разрешавай
+                    {#if appConfig.understandAutomatedExchangesUrl}
+                      <a href="{appConfig.understandAutomatedExchangesUrl}" target="_blank" rel="noreferrer">
+                        автоматична обмяна</a>.
+                    {:else}
+                      автоматична обмяна.
+                    {/if}
                   </span>
                 </FormField>
                 <FormField>
@@ -298,16 +304,9 @@
                     touch
                     />
                   <span slot="label">
-                    Разреши
-                    {#if appConfig.understandAutomatedExchangesUrl}
-                      <a href="{appConfig.understandAutomatedExchangesUrl}" target="_blank" rel="noreferrer">
-                        автоматично купуване и продаване
-                      </a>
-                    {:else}
-                        автоматично купуване и продаване
-                    {/if}
-                    на тази валута, когато е възможно, за да се
-                    поддържа наличната сума в зададените граници.
+                    Разреши автоматично купуване и продаване на тази
+                    валута, когато е възможно, за да се поддържа
+                    наличната сума в зададените граници.
                     {#if appConfig.exchangeFee}
                       Такса за транзакция: {appConfig.exchangeFee.toLocaleString(undefined, {maximumSignificantDigits: 3})}%.
                     {/if}
