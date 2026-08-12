@@ -41,6 +41,8 @@
   $: debtorData = action.debtorData
   $: interestRateChangeDate = new Date(action.interestRateChangedAt).toLocaleDateString()
   $: interestRate = action.interestRate.toLocaleString(undefined, {maximumFractionDigits: 3})
+  $: positiveInterestRate = action.interestRate > 0
+  $: negativeInterestRate = action.interestRate < 0
   $: configError = action.configError
 </script>
 
@@ -176,6 +178,11 @@
                   <li>
                     На {interestRateChangeDate} издателят е променил
                     годишния лихвен процент по сметката ви на {interestRate}%.
+                    {#if positiveInterestRate}
+                      Положителният лихвен процент означава, че наличната ви сума ще нараства с течение на времето.
+                    {:else if negativeInterestRate}
+                      Отрицателният лихвен процент означава, че наличната ви сума ще намалява с течение на времето.
+                    {/if}
                   </li>
                 {/if}
 

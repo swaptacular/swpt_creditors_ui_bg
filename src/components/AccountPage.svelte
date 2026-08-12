@@ -352,6 +352,11 @@
                   0%.
                 {:else}
                   {interestRate.toLocaleString(undefined, {maximumFractionDigits: 3})}%.
+                  {#if interestRate > 0}
+                    Наличната ви сума ще нараства с течение на времето.
+                  {:else}
+                    Наличната ви сума ще намалява с течение на времето.
+                  {/if}
                 {/if}
               </li>
               {#if scheduledForDeletion}
