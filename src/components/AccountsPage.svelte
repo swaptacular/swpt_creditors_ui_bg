@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { AppState, AccountsModel, AccountDataForDisplay } from '../app-state'
+  import { HAS_RECEIVED_TRADE_INSTRUCTIONS } from '../app-state'
   import { amountToLocaleString } from '../format-amounts'
   import { tick, onMount } from "svelte"
   import Fab, { Icon } from '@smui/fab';
@@ -9,7 +10,10 @@
   import Textfield from '@smui/textfield'
   import HelperText from '@smui/textfield/helper-text/index'
   import IconButton from '@smui/icon-button'
+  import { Title as DialogTitle, Content as DialogContent, Actions, InitialFocus } from '@smui/dialog'
+  import Button, { Label as ButtonLabel } from '@smui/button'
   import Page from './Page.svelte'
+  import Dialog from './Dialog.svelte'
   import ScanCoinDialog from './ScanCoinDialog.svelte'
 
   export let app: AppState
@@ -19,6 +23,7 @@
 
   const MAX_UNNAMED_ACCOUNT_CONFIGS = 4
 
+  let hasReceivedTradeInstructions = localStorage.getItem(HAS_RECEIVED_TRADE_INSTRUCTIONS) === 'true'
   let searchInput: HTMLInputElement
   let scanCoinDialog = false
   let visibleSearchBox = model.searchText !== undefined
@@ -53,6 +58,10 @@
     const words = filter.split(/\s+/u).filter(word => word.length > 0)
     const regExps = words.map(word => new RegExp(`(?:\\s|^)${word}`, 'ui'))
     return accounts.filter(account => regExps.every(re => re.test(account.display.debtorName)))
+  }
+
+  function hasTradableDisposition(accountData: AccountDataForDisplay): boolean {
+    return accountData.exchangeDisposition === "buy" || accountData.exchangeDisposition === "sell"
   }
 
   async function showSearchBox() {
@@ -100,6 +109,11 @@
     }
   }
 
+  function gotIt() {
+    localStorage.setItem(HAS_RECEIVED_TRADE_INSTRUCTIONS, 'true')
+    hasReceivedTradeInstructions = true
+  }
+
   onMount(() => {
     if (visibleSearchBox) {
       searchInput?.focus()
@@ -109,6 +123,7 @@
   $: hasAccounts = model.accounts.length > 0
   $: unnamedAccountUris = model.unnamedAccountUris
   $: shownAccounts = applyFilter(model.accounts, filter)
+  $: hasTradableAccounts = shownAccounts.some(hasTradableDisposition)
 </script>
 
 <style>
@@ -149,6 +164,13 @@
     font-weight: bold;
     margin-right: 0.4em;
   }
+  .trade-instructions-paragraph + .trade-instructions-paragraph {
+    margin-top: 0.75em;
+  }
+  .trade-instructions-paragraph .material-icons {
+    font-weight: bold;
+    vertical-align: bottom;
+  }
   .neutral-color {
     color: #ccc;
   }
@@ -177,6 +199,45 @@
 
 <Page title="Сметки" scrollTop={model.scrollTop} scrollLeft={model.scrollLeft}>
   <svelte:fragment slot="content">
+    {#if !hasReceivedTradeInstructions && hasTradableAccounts}
+      <Dialog
+        open
+        scrimClickAction=""
+        aria-labelledby="ack-trade-instructions-dialog-title"
+        aria-describedby="ack-trade-instructions-dialog-content"
+        >
+        <DialogTitle>Автоматична обмяна на валути — кратко упътване:</DialogTitle>
+        <DialogContent style="word-break: break-word">
+          <p class="trade-instructions-paragraph">
+            <span class="material-icons negative-color">exposure_neg_1</span>
+            означава, че {appConfig.siteTitle} ще се опитва да намали
+            наличната ви сума от тази валута, като продаде някакво
+            количество от нея.
+          </p>
+          <p class="trade-instructions-paragraph">
+            <span class="material-icons positive-color">exposure_plus_1</span>
+            означава, че {appConfig.siteTitle} ще се опитва да увеличи
+            наличната ви сума от тази валута, като купи някакво
+            количество от нея.
+          </p>
+          <p class="trade-instructions-paragraph">
+            За да работи автоматичната обмяна, трябва да имате поне по
+            един символ от всеки тип: валута за продаване и валута за
+            купуване.
+          </p>
+          <p class="trade-instructions-paragraph">
+            Колкото повече от тези символи виждате, толкова повече
+            възможности за автоматични обмени съществуват.
+          </p>
+        </DialogContent>
+        <Actions>
+          <Button use={[InitialFocus]} on:click={gotIt}>
+            <ButtonLabel>Разбрах</ButtonLabel>
+          </Button>
+        </Actions>
+      </Dialog>
+    {/if}
+
     {#if hasAccounts}
       {#if shownAccounts.length > 0 }
         <LayoutGrid style="word-break: break-word">
